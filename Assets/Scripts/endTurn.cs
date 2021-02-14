@@ -2,8 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NewBehaviourScript : MonoBehaviour
+public class endTurn : MonoBehaviour
 {
+
+    public int turn;
+    
+    void countUp()
+    {
+        turn++;
+    }
     // Start is called before the first frame update
     void Start()
     {
