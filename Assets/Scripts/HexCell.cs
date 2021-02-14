@@ -8,6 +8,7 @@ public class HexCell : MonoBehaviour
     public bool isPlains = false;
     public bool isFlooded = false;
     public bool hasShrek = false;
+    public bool hasGoose = false;
     public NestingGoose nestingGoose = null;
     public bool adjacentNodes = false;
 
@@ -36,6 +37,13 @@ public class HexCell : MonoBehaviour
         if (this.hasShrek) {
             this.hasShrek = false;
         }
+
+        if (this.hasGoose)
+        {
+            this.hasGoose = false;
+            gooseRenderer.enabled = false;
+            this.nestingGoose = null;
+        }
     }
 
     public void unflood() {
@@ -57,6 +65,13 @@ public class HexCell : MonoBehaviour
     public void setShrek() {
         this.hasShrek = true;
         spriteRenderer.sprite = shrek_sprite;
+    }
+
+    public void setGoose() {
+        this.hasGoose = true;
+        this.nestingGoose = null;
+
+        gooseRenderer.enabled = true;
     }
 
     // Update is called once per frame

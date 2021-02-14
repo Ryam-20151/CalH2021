@@ -382,11 +382,11 @@ public class GameGrid : MonoBehaviour
             if (tiles[gen_y, gen_x] != null)
             {
                 if (
-                !(tiles[gen_y, gen_x].GetComponent<HexCell>().isPlains) &&
+                (tiles[gen_y, gen_x].GetComponent<HexCell>().isPlains) &&
                 !(tiles[gen_y, gen_x].GetComponent<HexCell>().isFlooded) &&
-                !(tiles[gen_y, gen_x].GetComponent<HexCell>().hasShrek))
+                !(tiles[gen_y, gen_x].GetComponent<HexCell>().hasGoose))
                 {
-                    tiles[gen_y, gen_x].GetComponent<HexCell>().setShrek();
+                    tiles[gen_y, gen_x].GetComponent<HexCell>().setGoose();
                     continue_flag = true;
                 }
             }
