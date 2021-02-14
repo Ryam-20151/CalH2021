@@ -4,17 +4,40 @@ using UnityEngine;
 
 public class ChannelNode : MonoBehaviour
 {
-    ChannelNode[] _adjacent;
-    // TileNode[] tiles;
-    public bool _hasWater;
-    public bool _isCanal;
-    public bool _hasDam;
+    ChannelNode[] _adjacent = new ChannelNode[4];
+    HexCell[] _tiles = new HexCell[2];
+    bool _hasWater;
+    bool _isCanal;
+    bool _hasDam;
+    //-1 left, 0 flat, 1 right
+    int _orientation;
 
-    public ChannelNode(ChannelNode[] adjacent, bool hasWater, bool isCanal, bool hasDam) {
+    public SpriteRenderer canalSprite;
+
+    public Sprite flatCanalWater;
+    public Sprite flatCanalNoWater;
+    public Sprite flatCanalDamWater;
+    public Sprite flatCanalDamNoWater;
+    public Sprite flatNoCanal;
+
+    public Sprite leftCanalWater;
+    public Sprite leftCanalNoWater;
+    public Sprite leftCanalDamWater;
+    public Sprite leftCanalDamNoWater;
+    public Sprite leftNoCanal;
+
+    public Sprite rightCanalWater;
+    public Sprite rightCanalNoWater;
+    public Sprite rightCanalDamWater;
+    public Sprite rightCanalDamNoWater;
+    public Sprite rightNoCanal;
+
+    public ChannelNode(ChannelNode[] adjacent, int orientation, bool hasWater = false, bool isCanal = true, bool hasDam = false) {
         _adjacent = adjacent;
         _hasWater = hasWater;
         _isCanal = isCanal;
         _hasWater = hasWater;
+        _orientation = orientation;
     }
 
     //Add edge to node
@@ -43,23 +66,67 @@ public class ChannelNode : MonoBehaviour
         //regular canal, no dam
         if (!damIt)
         {
-            //TODO: Update sprite here to have water
+            switch(this._orientation) {
+                case -1:
+                    canalSprite.sprite = leftCanalWater;
+                    break;
+                case 0:
+                    canalSprite.sprite = flatCanalWater;
+                    break;
+                case 1:
+                    canalSprite.sprite = rightCanalWater;
+                    break;
+            }
+
             curr._hasWater = true;
         }
         //no dam before, but this one is a dam
         else if (!damIt && curr._hasDam)
         {
+            //TODO: Update to pick correct orientation of dam w/ water
+            switch(this._orientation) {
+                case -1:
+                    canalSprite.sprite = leftCanalDamWater;
+                    break;
+                case 0:
+                    canalSprite.sprite = flatCanalDamWater;
+                    break;
+                case 1:
+                    canalSprite.sprite = rightCanalDamWater;
+                    break;
+            }
+
             curr._hasWater = true;
-            //TODO: Update sprite here to be a dam with water
         }
         //Dam before, and this one is a dam
         else if (damIt && curr._hasDam)
         {
-            //TODO: Update sprite here to be a dam with no water
+            switch(this._orientation) {
+                case -1:
+                    canalSprite.sprite = leftCanalDamNoWater;
+                    break;
+                case 0:
+                    canalSprite.sprite = flatCanalDamNoWater;
+                    break;
+                case 1:
+                    canalSprite.sprite = rightCanalDamNoWater;
+                    break;
+            }
         }
+        //Empty canal, no water
         else
         {
-            //TODO: Update sprite here to be canal with no water
+            switch(this._orientation) {
+                case -1:
+                    canalSprite.sprite = leftCanalNoWater;
+                    break;
+                case 0:
+                    canalSprite.sprite = flatCanalNoWater;
+                    break;
+                case 1:
+                    canalSprite.sprite = rightCanalNoWater;
+                    break;
+            }
         }
 
         //Recursively iterate through canals
@@ -79,7 +146,8 @@ public class ChannelNode : MonoBehaviour
     }
 
     void onMouseDown(){
-        
+        //Something something make dam
+        //
     }
 
     //Returns new value of hasWater

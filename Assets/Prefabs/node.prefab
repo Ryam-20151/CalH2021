@@ -1,0 +1,115 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3787780581947137281
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3787780581947137284}
+  - component: {fileID: 3787780581947137283}
+  - component: {fileID: 3787780581947137282}
+  m_Layer: 0
+  m_Name: node
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3787780581947137284
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3787780581947137281}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.564, y: 0.047, z: -50.348637}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3787780581947137283
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3787780581947137281}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd9af80822c3347108c5adc57345a1d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canalSprite: {fileID: 3787780581947137282}
+  flatCanalWater: {fileID: 21300000, guid: 2d6d2ae55fdbfa4479229fc80bada5ff, type: 3}
+  flatCanalNoWater: {fileID: 21300000, guid: 188057e5e98cabf42b91f1e0a0b83317, type: 3}
+  flatCanalDamWater: {fileID: 21300000, guid: 0c65a805237714f4a9f2b31b3661d0eb, type: 3}
+  flatCanalDamNoWater: {fileID: 21300000, guid: fb9976cd107f040d580613193e84741a,
+    type: 3}
+  flatNoCanal: {fileID: 21300000, guid: 6ec62de462dde2946bf961a9f5877914, type: 3}
+  leftCanalWater: {fileID: 21300000, guid: 2a20095420d23bb4b84904f58ed0cf41, type: 3}
+  leftCanalNoWater: {fileID: 21300000, guid: 4f70dfbb514dd35409175b40c02add82, type: 3}
+  leftCanalDamWater: {fileID: 21300000, guid: b7550b3e5e68040828818df099903fc7, type: 3}
+  leftCanalDamNoWater: {fileID: 21300000, guid: bc2589dbfff8a4477bcff0d542040275,
+    type: 3}
+  leftNoCanal: {fileID: 21300000, guid: 3aaa01a0ce270a040b3633ba879a8534, type: 3}
+  rightCanalWater: {fileID: 21300000, guid: 8950a28ef9daa944198e396f76f9038b, type: 3}
+  rightCanalNoWater: {fileID: 21300000, guid: 27725311943af6d4e9ac4bfb2d5945f8, type: 3}
+  rightCanalDamWater: {fileID: 21300000, guid: f616859ba06bc40a6a6f4712231d61a2, type: 3}
+  rightCanalDamNoWater: {fileID: 21300000, guid: c10705b98b16d48f59f6f0e5dfb2eaef,
+    type: 3}
+  rightNoCanal: {fileID: 21300000, guid: 0d0cc2e5fe7d74e40b20e4d205c36c99, type: 3}
+--- !u!212 &3787780581947137282
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3787780581947137281}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300000, guid: 6ec62de462dde2946bf961a9f5877914, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 0.73, y: 0.08}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
