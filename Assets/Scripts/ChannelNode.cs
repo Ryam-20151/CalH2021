@@ -78,21 +78,21 @@ public class ChannelNode : MonoBehaviour
     // Recursively iterate through all nodes to update the water
     public void updateWater(ChannelNode curr, bool damIt = false) {
         //node has already been looked at
-        if (_hasWater)
+        if (curr._hasWater)
             return; 
 
         //regular canal, no dam
         if (!damIt)
         {
-            switch(this._orientation) {
+            switch(curr._orientation) {
                 case -1:
-                    canalSprite.sprite = leftCanalWater;
+                    curr.canalSprite.sprite = curr.leftCanalWater;
                     break;
                 case 0:
-                    canalSprite.sprite = flatCanalWater;
+                    curr.canalSprite.sprite = curr.flatCanalWater;
                     break;
                 case 1:
-                    canalSprite.sprite = rightCanalWater;
+                    curr.canalSprite.sprite = curr.rightCanalWater;
                     break;
             }
 
@@ -102,15 +102,15 @@ public class ChannelNode : MonoBehaviour
         else if (!damIt && curr._hasDam)
         {
             //TODO: Update to pick correct orientation of dam w/ water
-            switch(this._orientation) {
+            switch(curr._orientation) {
                 case -1:
-                    canalSprite.sprite = leftCanalDamWater;
+                    curr.canalSprite.sprite = curr.leftCanalDamWater;
                     break;
                 case 0:
-                    canalSprite.sprite = flatCanalDamWater;
+                    curr.canalSprite.sprite = curr.flatCanalDamWater;
                     break;
                 case 1:
-                    canalSprite.sprite = rightCanalDamWater;
+                    curr.canalSprite.sprite = curr.rightCanalDamWater;
                     break;
             }
 
@@ -119,30 +119,30 @@ public class ChannelNode : MonoBehaviour
         //Dam before, and this one is a dam
         else if (damIt && curr._hasDam)
         {
-            switch(this._orientation) {
+            switch(curr._orientation) {
                 case -1:
-                    canalSprite.sprite = leftCanalDamNoWater;
+                    curr.canalSprite.sprite = curr.leftCanalDamNoWater;
                     break;
                 case 0:
-                    canalSprite.sprite = flatCanalDamNoWater;
+                    curr.canalSprite.sprite = curr.flatCanalDamNoWater;
                     break;
                 case 1:
-                    canalSprite.sprite = rightCanalDamNoWater;
+                    curr.canalSprite.sprite = curr.rightCanalDamNoWater;
                     break;
             }
         }
         //Empty canal, no water
         else
         {
-            switch(this._orientation) {
+            switch(curr._orientation) {
                 case -1:
-                    canalSprite.sprite = leftCanalNoWater;
+                    curr.canalSprite.sprite = curr.leftCanalNoWater;
                     break;
                 case 0:
-                    canalSprite.sprite = flatCanalNoWater;
+                    curr.canalSprite.sprite = curr.flatCanalNoWater;
                     break;
                 case 1:
-                    canalSprite.sprite = rightCanalNoWater;
+                    curr.canalSprite.sprite = curr.rightCanalNoWater;
                     break;
             }
         }
@@ -150,8 +150,21 @@ public class ChannelNode : MonoBehaviour
         //Recursively iterate through canals
         //If current is a dam, don't look at adjacent nodes
         for (int i = 0; i < 4; i++) {
-            if(curr && curr._adjacent[i]._isCanal)
+            if(curr._adjacent[i] && curr._adjacent[i]._isCanal)
                 updateWater(curr._adjacent[i], curr._hasDam || damIt);
+        }
+    }
+
+    public void toggleAllWaterOff(ChannelNode curr, bool isGodNode = true) {
+        //Don't care about nodes without water
+        if (!curr._hasWater)
+            return;
+
+        curr._hasWater = isGodNode;
+
+        for (int i = 0; i < 4; i++) {
+            if(curr._adjacent[i] && curr._adjacent[i]._isCanal)
+                toggleAllWaterOff(curr._adjacent[i], isGodNode = false);
         }
     }
 
