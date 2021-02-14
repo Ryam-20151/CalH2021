@@ -35,15 +35,51 @@ public class ChannelNode : MonoBehaviour
     }
 
     // Recursively iterate through all nodes to update the water
-    public void updateWater(ChannelNode curr) {
+    public void updateWater(ChannelNode curr, bool damIt) {
         //node has already been looked at
         if (_hasWater)
             return; 
 
-        curr._hasWater = true;
-        
-        for (int i = 0; i < 4; i++) {
+        //regular canal, no dam
+        if (!damIt)
+        {
+            //TODO: Update sprite here to have water
+            curr._hasWater = true;
         }
+        //no dam before, but this one is a dam
+        else if (!damIt && curr._hasDam)
+        {
+            curr._hasWater = true;
+            //TODO: Update sprite here to be a dam with water
+        }
+        //Dam before, and this one is a dam
+        else if (damIt && curr._hasDam)
+        {
+            //TODO: Update sprite here to be a dam with no water
+        }
+        else
+        {
+            //TODO: Update sprite here to be canal with no water
+        }
+
+        //Recursively iterate through canals
+        //If current is a dam, don't look at adjacent nodes
+        for (int i = 0; i < 4; i++) {
+            if(curr._adjacent[i]._isCanal)
+                updateWater(curr._adjacent[i], curr._hasDam || damIt);
+        }
+    }
+
+    void onMouseEnter(){
+
+    }
+
+    void onMouseLeave(){
+
+    }
+
+    void onMouseDown(){
+        
     }
 
     //Returns new value of hasWater
