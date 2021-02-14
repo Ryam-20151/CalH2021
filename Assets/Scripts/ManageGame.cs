@@ -13,9 +13,15 @@ public class ManageGame : MonoBehaviour
 
     public void endTurn()
         {
-            turn++;
-            turns = totalTurns;
-            displayTurn.text = "Turn: "+turn;
+
+            if(turn < 20){
+                turn++;
+                turns = totalTurns;
+                displayTurn.text = "Turn: "+turn;
+            }
+          
+
+            
         }
 
     public void usebeaver()
