@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ChannelNode : MonoBehaviour
 {
-    ChannelNode[] _adjacent = new ChannelNode[4];
+    public ChannelNode[] _adjacent = new ChannelNode[4];
     HexCell[] _tiles = new HexCell[2];
     bool _hasWater;
     bool _isCanal;
@@ -34,6 +34,7 @@ public class ChannelNode : MonoBehaviour
     public Sprite rightCanalDamWater;
     public Sprite rightCanalDamNoWater;
     public Sprite rightNoCanal;
+
 
     public Sprite leftWhiteCanal;
     public Sprite flatWhiteCanal;

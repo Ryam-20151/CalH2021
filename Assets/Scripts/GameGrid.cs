@@ -14,6 +14,7 @@ public class GameGrid : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
         for (int i = 0; i < 7; i++)
         {
             for (int j = 0; j < 7; j++)
@@ -44,7 +45,24 @@ public class GameGrid : MonoBehaviour
             }
         }
 
-        for (int i = 0; i < 7; i++)
+        System.Random random = new System.Random();
+
+        for (int seeder = 0; seeder < 10; seeder++)
+        {
+            int gen_y = random.Next(0, 7);
+            int gen_x = random.Next(0, 7);
+
+            if (tiles[gen_y, gen_x] != null)
+            {
+                tiles[gen_y, gen_x].GetComponent<HexCell>().setPlains();
+            }
+            else {
+                seeder--;
+            }
+        }
+
+
+                for (int i = 0; i < 7; i++)
         {
             for (int j = 0; j < 7; j++)
             {
@@ -160,7 +178,9 @@ public class GameGrid : MonoBehaviour
                         GameObject pos_0_node = Instantiate(channelNodePrototype, initial_postion, Quaternion.identity);
                         pos_0_node.GetComponent<ChannelNode>().configureNode(p0list, 0);
                         curr_cell.nodes[0] = pos_0_node;
-                        tiles[i + 1, j].GetComponent<HexCell>().nodes[0] = pos_0_node;
+                        if (pos_0_cell != null) {
+                            tiles[i + 1, j].GetComponent<HexCell>().nodes[3] = pos_0_node;
+                        }
                     }
 
                     // Position 1
@@ -178,6 +198,10 @@ public class GameGrid : MonoBehaviour
                         GameObject pos_1_node = Instantiate(channelNodePrototype, initial_postion, Quaternion.identity);
                         pos_1_node.GetComponent<ChannelNode>().configureNode(p1list, -1);
                         curr_cell.nodes[1] = pos_1_node;
+                        if (pos_1_cell != null)
+                        {
+                            pos_1_cell.GetComponent<HexCell>().nodes[4] = pos_1_node;
+                        }
                     }
                     // Position 2
                     if (curr_cell.nodes[2] == null)
@@ -193,6 +217,10 @@ public class GameGrid : MonoBehaviour
                         GameObject pos_2_node = Instantiate(channelNodePrototype, initial_postion, Quaternion.identity);
                         pos_2_node.GetComponent<ChannelNode>().configureNode(p2list, 1);
                         curr_cell.nodes[2] = pos_2_node;
+                        if (pos_2_cell != null)
+                        {
+                            pos_2_cell.GetComponent<HexCell>().nodes[5] = pos_2_node;
+                        }
                     }
 
                     // Position 3
@@ -210,7 +238,10 @@ public class GameGrid : MonoBehaviour
                         GameObject pos_3_node = Instantiate(channelNodePrototype, initial_postion, Quaternion.identity);
                         pos_3_node.GetComponent<ChannelNode>().configureNode(p3list, 0);
                         curr_cell.nodes[3] = pos_3_node;
-                        tiles[i + 1, j].GetComponent<HexCell>().nodes[3] = pos_3_node;
+                        if (pos_3_cell != null)
+                        {
+                            tiles[i + 1, j].GetComponent<HexCell>().nodes[0] = pos_3_node;
+                        }
                     }
                     // Position 4
                     if (curr_cell.nodes[4] == null)
@@ -227,6 +258,11 @@ public class GameGrid : MonoBehaviour
                         pos_4_node.GetComponent<ChannelNode>().configureNode(p4list, -1); 
 
                         curr_cell.nodes[4] = pos_4_node;
+
+                        if (pos_4_cell != null)
+                        {
+                            pos_4_cell.GetComponent<HexCell>().nodes[1] = pos_4_node;
+                        }
                     }
                     // Position 5
                     if (curr_cell.nodes[5] == null)
@@ -245,6 +281,11 @@ public class GameGrid : MonoBehaviour
                         pos_5_node.GetComponent<ChannelNode>().configureNode(p5list, 1);
                         
                         curr_cell.nodes[5] = pos_5_node;
+
+                        if (pos_5_cell != null)
+                        {
+                            pos_5_cell.GetComponent<HexCell>().nodes[2] = pos_5_node;
+                        }
                     }
                 }
             }
@@ -254,9 +295,17 @@ public class GameGrid : MonoBehaviour
         {
             for (int j = 0; j < 7; j++)
             {
-                for (int pos = 0; pos < 6; pos++)
+                if (tiles[i, j] != null)
                 {
-                    //HexCell curr_cell = tiles[i, j].GetComponent<HexCell>();
+                    for (int pos = 0; pos < 6; pos++)
+                    {
+                        HexCell curr_cell = tiles[i, j].GetComponent<HexCell>();
+                        ChannelNode target_node = curr_cell.nodes[pos].GetComponent<ChannelNode>();
+
+                        target_node.addEdge(curr_cell.nodes[(pos + 1) % 6].GetComponent<ChannelNode>(),
+                            curr_cell.nodes[(pos + 1) % 6].GetComponent<ChannelNode>());
+
+                    }
                 }
             }
         }

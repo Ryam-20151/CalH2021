@@ -15,8 +15,10 @@ public class HexCell : MonoBehaviour
     public SpriteRenderer gooseRenderer;
     public Sprite grass_sprite;
     public Sprite shrek_sprite;
+    public Sprite forest_sprite;
     public Sprite water_sprite;
     public Sprite goose_sprite;
+
 
     public GameObject[] nodes = { null, null, null, null, null, null };
 
@@ -31,6 +33,22 @@ public class HexCell : MonoBehaviour
     public void flood()
     {
         spriteRenderer.sprite = water_sprite;
+    }
+
+    public void unflood() {
+        if (this.isPlains)
+        {
+            spriteRenderer.sprite = grass_sprite;
+        }
+        else {
+            spriteRenderer.sprite = forest_sprite;
+        }
+        
+    }
+
+    public void setPlains() {
+        this.isPlains = true;
+        spriteRenderer.sprite = grass_sprite;
     }
 
     // Update is called once per frame

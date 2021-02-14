@@ -53,9 +53,17 @@ MonoBehaviour:
   spriteRenderer: {fileID: 8601997287218897719}
   gooseRenderer: {fileID: 7116075807875278811}
   grass_sprite: {fileID: 21300000, guid: e8cea150df11d1340be0df3bb2f72102, type: 3}
-  shrek_sprite: {fileID: 0}
+  shrek_sprite: {fileID: 21300000, guid: 9ddcbdfcd1eed4c4eb137bbe326baba8, type: 3}
+  forest_sprite: {fileID: 21300000, guid: 490127f0f8f3eb746b7358a23cddf54f, type: 3}
   water_sprite: {fileID: 21300000, guid: edc40ffd25cb6ea44be91cba5d85fa7f, type: 3}
   goose_sprite: {fileID: 21300000, guid: d3e95ca7b4fdb8f4cab2fd843827cf54, type: 3}
+  nodes:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1 &7351591133014389309
 GameObject:
   m_ObjectHideFlags: 0
@@ -207,7 +215,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: e8cea150df11d1340be0df3bb2f72102, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 490127f0f8f3eb746b7358a23cddf54f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
