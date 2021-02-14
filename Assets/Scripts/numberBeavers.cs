@@ -5,9 +5,8 @@ using UnityEngine.UI;
 
 public class numberBeavers : MonoBehaviour
 {
-
-    public int turns;
-    public int totalTurns;
+    public ManageGame new_game;
+    
 
     public Image[] beavers;
     public Sprite fullBeaver;
@@ -15,13 +14,13 @@ public class numberBeavers : MonoBehaviour
 
     void Update(){
         for(int i = 0; i<beavers.Length; i++){
-            if(i<turns){
+            if(i<new_game.turns){
                 beavers[i].sprite = fullBeaver;
             } else {
                 beavers[i].sprite = usedBeaver;
             }
 
-            if(i < totalTurns){
+            if(i < new_game.totalTurns){
                 beavers[i].enabled = true;
             } else {
                 beavers[i].enabled = false;
