@@ -25,6 +25,8 @@ public class ManageGame : MonoBehaviour
             {
                 //Spawn shreks
                 ggrid.spawnShrek();
+                //Spawn geese
+                ggrid.spawnGeese();
             }
         }
 
