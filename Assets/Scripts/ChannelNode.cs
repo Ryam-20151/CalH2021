@@ -34,7 +34,7 @@ public class ChannelNode : MonoBehaviour
     public Sprite rightCanalDamNoWater;
     public Sprite rightNoCanal;
 
-    public ChannelNode(HexCell[] tiles, int orientation, bool hasWater = false, bool isCanal = true, bool hasDam = false) {
+    public ChannelNode(HexCell[] tiles, int orientation, bool isCanal = false, bool hasWater = false, bool hasDam = false) {
         _tiles = tiles;
         _hasWater = hasWater;
         _isCanal = isCanal;
@@ -59,19 +59,24 @@ public class ChannelNode : MonoBehaviour
         return true;
     }
 
-    private void updateState(){
+    private bool updateState(){
         switch (_state){
             case 0:
+                _state++;
+                _isCanal = true;
                 break;
             case 1:
+                _state++;
+                _hasDam = true;
                 break;
-            case 2:
-                break;
+            default:
+                return false;
         }
+        return true;
     }
 
     // Recursively iterate through all nodes to update the water
-    public void updateWater(ChannelNode curr, bool damIt) {
+    public void updateWater(ChannelNode curr, bool damIt = false) {
         //node has already been looked at
         if (_hasWater)
             return; 
@@ -145,7 +150,7 @@ public class ChannelNode : MonoBehaviour
         //Recursively iterate through canals
         //If current is a dam, don't look at adjacent nodes
         for (int i = 0; i < 4; i++) {
-            if(curr._adjacent[i]._isCanal)
+            if(curr && curr._adjacent[i]._isCanal)
                 updateWater(curr._adjacent[i], curr._hasDam || damIt);
         }
     }
@@ -159,8 +164,9 @@ public class ChannelNode : MonoBehaviour
     }
 
     void onMouseDown(){
-        //Something something make dam
-        //
+        if (updateState()){
+            //TODO call updateWater with god node
+        }
     }
 
     //Returns new value of hasWater
