@@ -90,7 +90,6 @@ public class ChannelNode : MonoBehaviour
 
     //Add edge to node
     public bool addEdge(ChannelNode first, ChannelNode second){
-        Debug.Log("ADJACENT, first: " + first + " second: " + second);
         if (this._adjacent[0] == null) {
             this._adjacent[0] = first;
             this._adjacent[1] = second;
