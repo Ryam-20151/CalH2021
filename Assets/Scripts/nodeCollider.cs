@@ -6,6 +6,7 @@ public class nodeCollider : MonoBehaviour
 {
     public ChannelNode channelNodeScript;
     private GameGrid gameGridScript;
+    private ManageGame manageGameScript;
 
     public Sprite leftWhiteCanal;
     public Sprite flatWhiteCanal;
@@ -16,10 +17,10 @@ public class nodeCollider : MonoBehaviour
 
     void Start(){
         gameGridScript = GameObject.Find("GameGrid").GetComponent<GameGrid>();
+        manageGameScript = GameObject.Find("ManageGame").GetComponent<ManageGame>();
     }
 
     void OnMouseEnter(){
-        Debug.Log("MOUSE DETECTED");
         channelNodeScript._prevSprite = channelNodeScript.canalSprite.sprite;
         if (channelNodeScript.getState() == 0) {
             switch (channelNodeScript.getOrientation()) {
@@ -49,16 +50,26 @@ public class nodeCollider : MonoBehaviour
     }
 
     void OnMouseExit(){
-        Debug.Log("BYE MOUSE ");
         channelNodeScript.canalSprite.sprite = channelNodeScript._prevSprite;
     }
 
     void OnMouseDown(){
+        channelNodeScript.getState();
+        //do nothing if no turns
+        if (manageGameScript.turns == 0)
+            return;
+        if (channelNodeScript.getState() == 1 && manageGameScript.logs < 2) {
+            return;
+        }
+
         if (channelNodeScript.updateState()){
-            Debug.Log(channelNodeScript.getState() + " and click!");
             gameGridScript.defloodAll();
             channelNodeScript.toggleAllWaterOff(GameGrid.godNode.GetComponent<ChannelNode>());
             channelNodeScript.updateWater(GameGrid.godNode.GetComponent<ChannelNode>());
+            manageGameScript.turns--;
+            if (channelNodeScript.getState() == 2)
+                manageGameScript.logs -= 2;
+                manageGameScript.displayLogs.text = ""+manageGameScript.logs;
         }
     }
 }
