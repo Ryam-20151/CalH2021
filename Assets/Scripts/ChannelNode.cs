@@ -34,12 +34,54 @@ public class ChannelNode : MonoBehaviour
     public Sprite rightCanalDamNoWater;
     public Sprite rightNoCanal;
 
-    public ChannelNode(HexCell[] tiles, int orientation, bool isCanal = true, bool hasWater = false, bool hasDam = false) {
-        _tiles = tiles;
-        _hasWater = hasWater;
-        _isCanal = isCanal;
-        _hasWater = hasWater;
-        _orientation = orientation;
+    public configureNode(HexCell[] tiles, int orientation, bool isCanal = true, bool hasWater = false, bool hasDam = false) {
+        this._tiles = tiles;
+        this._hasWater = hasWater;
+        this._isCanal = isCanal;
+        this._hasWater = hasWater;
+        this._orientation = orientation;
+
+        switch (_orientation){
+            case -1:
+                if (!isCanal) {
+                    canalSprite.sprite = leftNoCanal;
+                } else if (isCanal && !hasWater && !hasDam) {
+                    canalSprite.sprite = leftCanalNoWater;
+                } else if (isCanal && hasWater && !hasDam) {
+                    canalSprite.sprite = leftCanalWater;
+                } else if (isCanal && !hasWater && hasDam) {
+                    canalSprite.sprite = leftCanalDamNoWater;
+                } else if (isCanal && hasWater && hasDam) {
+                    canalSprite.sprite = leftCanalDamWater;
+                }
+                break;
+            case 0:
+                if (!isCanal) {
+                    canalSprite.sprite = flatNoCanal;
+                } else if (isCanal && !hasWater && !hasDam) {
+                    canalSprite.sprite = flatCanalNoWater;
+                } else if (isCanal && hasWater && !hasDam) {
+                    canalSprite.sprite = flatCanalWater;
+                } else if (isCanal && !hasWater && hasDam) {
+                    canalSprite.sprite = flatCanalDamNoWater;
+                } else if (isCanal && hasWater && hasDam) {
+                    canalSprite.sprite = flatCanalDamWater;
+                }
+                break;
+            case 1:
+                if (!isCanal) {
+                    canalSprite.sprite = rightNoCanal;
+                } else if (isCanal && !hasWater && !hasDam) {
+                    canalSprite.sprite = rightCanalNoWater;
+                } else if (isCanal && hasWater && !hasDam) {
+                    canalSprite.sprite = rightCanalWater;
+                } else if (isCanal && !hasWater && hasDam) {
+                    canalSprite.sprite = rightCanalDamNoWater;
+                } else if (isCanal && hasWater && hasDam) {
+                    canalSprite.sprite = rightCanalDamWater;
+                }
+                break;
+        }
     }
 
     //Add edge to node
