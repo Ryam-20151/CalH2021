@@ -5,6 +5,7 @@ using UnityEngine;
 public class nodeCollider : MonoBehaviour
 {
     public ChannelNode channelNodeScript;
+    private GameGrid gameGridScript;
 
     public Sprite leftWhiteCanal;
     public Sprite flatWhiteCanal;
@@ -12,6 +13,10 @@ public class nodeCollider : MonoBehaviour
     public Sprite leftWhiteDam;
     public Sprite flatWhiteDam;
     public Sprite rightWhiteDam;
+
+    void Start(){
+        gameGridScript = GameObject.Find("GameGrid").GetComponent<GameGrid>();
+    }
 
     void OnMouseEnter(){
         Debug.Log("MOUSE DETECTED");
@@ -51,6 +56,7 @@ public class nodeCollider : MonoBehaviour
     void OnMouseDown(){
         if (channelNodeScript.updateState()){
             Debug.Log(channelNodeScript.getState() + " and click!");
+            gameGridScript.defloodAll();
             channelNodeScript.toggleAllWaterOff(GameGrid.godNode.GetComponent<ChannelNode>());
             channelNodeScript.updateWater(GameGrid.godNode.GetComponent<ChannelNode>());
         }
