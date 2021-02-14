@@ -326,8 +326,8 @@ public class GameGrid : MonoBehaviour
                             mod2 = 5;
                         }
 
-                        Debug.Log(mod1);
-                        Debug.Log(mod2);
+                        // Debug.Log(mod1);
+                        // Debug.Log(mod2);
 
                         target_node.addEdge(curr_cell.nodes[mod1].GetComponent<ChannelNode>(),
                             curr_cell.nodes[mod2].GetComponent<ChannelNode>());

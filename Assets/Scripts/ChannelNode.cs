@@ -165,7 +165,7 @@ public class ChannelNode : MonoBehaviour
 
         curr._visited = true;
         //regular canal, no dam
-        if (!damIt)
+        if (!damIt && !curr._hasDam)
         {
             switch(curr._orientation) {
                 case -1:
@@ -198,9 +198,8 @@ public class ChannelNode : MonoBehaviour
             }
 
             curr._hasWater = true;
-            Debug.Log("Dam spotted!");
-            _tiles[0].flood();
-            _tiles[1].flood();
+            curr._tiles[0].flood();
+            curr._tiles[1].flood();
         }
         //Dam before, and this one is a dam
         else if (damIt && curr._hasDam)
