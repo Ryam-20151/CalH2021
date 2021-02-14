@@ -37,22 +37,12 @@ public class ChannelNode : MonoBehaviour
     public Sprite rightCanalDamNoWater;
     public Sprite rightNoCanal;
 
-    private ManageGame gameManagerScript;
-
-    void Start() {
-        Debug.Log("manager Aquired!");
-        gameManagerScript = GameObject.Find("ManageGame").GetComponent<ManageGame>();
-    }
-
     public void configureNode(HexCell[] tiles, int orientation, bool isCanal = false, bool hasWater = false, bool hasDam = false) {
         this._tiles = tiles;
         this._hasWater = hasWater;
         this._isCanal = isCanal;
         this._hasWater = hasWater;
         this._orientation = orientation;
-
-        Debug.Log("manager Aquired in configure!");
-        gameManagerScript = GameObject.Find("ManageGame").GetComponent<ManageGame>();
 
         switch (_orientation){
             case -1:
@@ -114,15 +104,19 @@ public class ChannelNode : MonoBehaviour
 
     //Update state of node
     public bool updateState(){
-        bool waterSourceFound = false;
+        int waterSourcesFound = 0;
+        int damsFound = 0;
 
         for (int i = 0; i < 4; i++) {
             if(_adjacent[i] && _adjacent[i]._hasWater){
-                waterSourceFound = true;
+                waterSourcesFound++;
             }
+            if (_adjacent[i] && _adjacent[i]._hasDam)
+                damsFound++;
         }
 
-        if (!waterSourceFound)
+        Debug.Log("Dams: " + damsFound + "Water: " + waterSourcesFound);
+        if (waterSourcesFound < 1 || waterSourcesFound <= damsFound )
             return false;
 
         switch (_state){
