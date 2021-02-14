@@ -7,7 +7,7 @@ public class ChannelNode : MonoBehaviour
     public ChannelNode[] _adjacent = new ChannelNode[4];
     HexCell[] _tiles = new HexCell[2];
     bool _hasWater;
-    bool _isCanal;
+    public bool _isCanal;
     bool _hasDam;
     //-1 left, 0 flat, 1 right
     int _orientation;
@@ -90,16 +90,13 @@ public class ChannelNode : MonoBehaviour
 
     //Add edge to node
     public bool addEdge(ChannelNode first, ChannelNode second){
-        if (this._adjacent.Length >= 4 || first._adjacent.Length >= 4 || second._adjacent.Length >= 4) {
-            return false;
-        }
-
+        Debug.Log("ADJACENT, first: " + first + " second: " + second);
         if (this._adjacent[0] == null) {
-            this._adjacent[0] = first.getRef();
-            this._adjacent[1] = second.getRef();
+            this._adjacent[0] = first;
+            this._adjacent[1] = second;
         } else {
-            this._adjacent[2] = first.getRef();
-            this._adjacent[3] = second.getRef();
+            this._adjacent[2] = first;
+            this._adjacent[3] = second;
         }
 
         return true;
@@ -202,16 +199,16 @@ public class ChannelNode : MonoBehaviour
         }
     }
 
-    public void toggleAllWaterOff(ChannelNode curr, bool isGodNode = true) {
+    public void toggleAllWaterOff(ChannelNode curr) {
         //Don't care about nodes without water
         if (!curr._hasWater)
             return;
 
-        curr._hasWater = isGodNode;
+        curr._hasWater = false;
 
         for (int i = 0; i < 4; i++) {
             if(curr._adjacent[i] && curr._adjacent[i]._isCanal)
-                toggleAllWaterOff(curr._adjacent[i], isGodNode = false);
+                toggleAllWaterOff(curr._adjacent[i]);
         }
     }
 
