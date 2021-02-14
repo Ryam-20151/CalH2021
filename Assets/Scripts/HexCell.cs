@@ -16,14 +16,15 @@ public class HexCell : MonoBehaviour
     public Sprite grass_sprite;
     public Sprite shrek_sprite;
     public Sprite water_sprite;
-    public Sprite goose_sprite; 
+    public Sprite goose_sprite;
+
+    public GameObject[] nodes = { null, null, null, null, null, null };
 
     // Start is called before the first frame update
     void Start()
     {
 
-        
-        //gooseRenderer.enabled = false;
+        gooseRenderer.enabled = false;
 
     }
 
