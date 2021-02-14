@@ -229,9 +229,9 @@ public class ChannelNode : MonoBehaviour
     }
 
     //Returns new value of hasWater
-    public bool toggleHasWater(){
-        this._hasWater = !this._hasWater;
-        return this._hasWater;
+    public bool setHasWater(bool val){
+        this._hasWater = val;
+        return val;
     }
 
     //Returns new value of hasDam
