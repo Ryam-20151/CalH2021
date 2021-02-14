@@ -6,7 +6,7 @@ public class NestingGoose
 {
     private int _turnsAlive;
     private int _spawnThreshold;
-    private int _spawnCoeff = 10;
+    private int _spawnCoeff = 6;
     public bool spawned; 
     
     // Start is called before the first frame update
