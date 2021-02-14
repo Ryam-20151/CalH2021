@@ -34,7 +34,7 @@ public class ChannelNode : MonoBehaviour
     public Sprite rightCanalDamNoWater;
     public Sprite rightNoCanal;
 
-    public configureNode(HexCell[] tiles, int orientation, bool isCanal = true, bool hasWater = false, bool hasDam = false) {
+    public configureNode(HexCell[] tiles, int orientation, bool isCanal = false, bool hasWater = false, bool hasDam = false) {
         this._tiles = tiles;
         this._hasWater = hasWater;
         this._isCanal = isCanal;
