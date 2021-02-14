@@ -1,12 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class GameGrid : MonoBehaviour
 {
 
-    public HexCell hexTilePrototype;
-    public HexCell[,] tiles = new HexCell[7,7];
+    public GameObject hexCellPrototype; 
+    public GameObject[,] tiles = new GameObject[7,7];
+    public float k2;
 
     // Start is called before the first frame update
     void Start()
@@ -23,18 +25,23 @@ public class GameGrid : MonoBehaviour
                 {
                     tiles[i,j] = null;
                 }
-                else if (i == 6 && j != 4)
+                else if (i == 6 && j != 3)
                 {
                     tiles[i,j] = null;
                 }
                 else
                 {
-                    tiles[i,j] = Instantiate(hexTilePrototype);
+                    float k = 1.4f;
+                    float d_x = (float)(j - 3);
+                    float d_y = (float)(i - 3);
+
+                    Vector3 initial_postion;
+                    initial_postion = new Vector3(k * d_x * (float)Math.Cos(Math.PI / 6), k * (d_y  + Math.Abs(d_x)*(float)Math.Sin(Math.PI / 6)), 0f);
+                    GameObject hex = Instantiate(hexCellPrototype, initial_postion, Quaternion.identity);
+                    tiles[i, j] = hex;
                 }
             }
-        }    
-        
-
+        }
     }
 
 

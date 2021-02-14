@@ -233,6 +233,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29f59a11bb7232149994e550c3a9023e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hexCellPrototype: {fileID: 7039685870451720802, guid: 1837ebc58d11cb6469e009d1dbb65cb2,
+    type: 3}
 --- !u!4 &1575751699
 Transform:
   m_ObjectHideFlags: 0
