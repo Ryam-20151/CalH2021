@@ -127,29 +127,13 @@ public class ChannelNode : MonoBehaviour
 
         switch (_state){
             case 0:
-                if (gameManagerScript.turns > 0)
-                {
-                    _state++;
-                    _isCanal = true;
-                    gameManagerScript.turns--;
-
-                } else {
-                    Debug.Log("Cannot dig ditch with no actions remaining!");
-                }
+                _state++;
+                _isCanal = true;
 
                 break;
             case 1:
-                if (gameManagerScript.logs > 2 && gameManagerScript.turns > 0)
-                {
-                    _state++;
-                    _hasDam = true;
-                    gameManagerScript.turns--;
-                    gameManagerScript.logs -= 2;
-                }
-                else
-                {
-                    Debug.Log("Cannot build dam with no actions or less than 2 wood!");
-                }
+                _state++;
+                _hasDam = true;
                 break;
             default:
                 return false;
@@ -169,13 +153,13 @@ public class ChannelNode : MonoBehaviour
         {
             switch(curr._orientation) {
                 case -1:
-                    curr.canalSprite.sprite = _prevSprite = curr.leftCanalWater;
+                    curr.canalSprite.sprite = curr._prevSprite = curr.leftCanalWater;
                     break;
                 case 0:
-                    curr.canalSprite.sprite = _prevSprite = curr.flatCanalWater;
+                    curr.canalSprite.sprite = curr._prevSprite = curr.flatCanalWater;
                     break;
                 case 1:
-                    curr.canalSprite.sprite = _prevSprite = curr.rightCanalWater;
+                    curr.canalSprite.sprite = curr._prevSprite = curr.rightCanalWater;
                     break;
             }
 
@@ -187,13 +171,13 @@ public class ChannelNode : MonoBehaviour
             //TODO: Update to pick correct orientation of dam w/ water
             switch(curr._orientation) {
                 case -1:
-                    curr.canalSprite.sprite = _prevSprite = curr.leftCanalDamWater;
+                    curr.canalSprite.sprite = curr._prevSprite = curr.leftCanalDamWater;
                     break;
                 case 0:
-                    curr.canalSprite.sprite = _prevSprite = curr.flatCanalDamWater;
+                    curr.canalSprite.sprite = curr._prevSprite = curr.flatCanalDamWater;
                     break;
                 case 1:
-                    curr.canalSprite.sprite = _prevSprite = curr.rightCanalDamWater;
+                    curr.canalSprite.sprite = curr._prevSprite = curr.rightCanalDamWater;
                     break;
             }
 
@@ -206,13 +190,13 @@ public class ChannelNode : MonoBehaviour
         {
             switch(curr._orientation) {
                 case -1:
-                    curr.canalSprite.sprite = _prevSprite = curr.leftCanalDamNoWater;
+                    curr.canalSprite.sprite = curr._prevSprite = curr.leftCanalDamNoWater;
                     break;
                 case 0:
-                    curr.canalSprite.sprite = _prevSprite = curr.flatCanalDamNoWater;
+                    curr.canalSprite.sprite = curr._prevSprite = curr.flatCanalDamNoWater;
                     break;
                 case 1:
-                    curr.canalSprite.sprite = _prevSprite = curr.rightCanalDamNoWater;
+                    curr.canalSprite.sprite = curr._prevSprite = curr.rightCanalDamNoWater;
                     break;
             }
         }
@@ -221,13 +205,13 @@ public class ChannelNode : MonoBehaviour
         {
             switch(curr._orientation) {
                 case -1:
-                    curr.canalSprite.sprite = _prevSprite = curr.leftCanalNoWater;
+                    curr.canalSprite.sprite = curr._prevSprite = curr.leftCanalNoWater;
                     break;
                 case 0:
-                    curr.canalSprite.sprite = _prevSprite = curr.flatCanalNoWater;
+                    curr.canalSprite.sprite = curr._prevSprite = curr.flatCanalNoWater;
                     break;
                 case 1:
-                    curr.canalSprite.sprite = _prevSprite = curr.rightCanalNoWater;
+                    curr.canalSprite.sprite = curr._prevSprite = curr.rightCanalNoWater;
                     break;
             }
         }
@@ -269,10 +253,6 @@ public class ChannelNode : MonoBehaviour
     public bool toggleHasCanal(){
         this._isCanal = !this._isCanal;
         return this._isCanal;
-    }
-
-    public ChannelNode getRef() {
-        return this;
     }
 
     public int getOrientation(){

@@ -72,9 +72,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   channelNodeScript: {fileID: 3787780581947137283}
   leftWhiteCanal: {fileID: 21300000, guid: e31a0a1cbc21340cbbc3195fd48eb981, type: 3}
-  flatWhiteCanal: {fileID: 0}
-  rightWhiteCanal: {fileID: 0}
-  leftWhiteDam: {fileID: 0}
+  flatWhiteCanal: {fileID: 21300000, guid: e912bf89c609f8e4da7288c4ac12a775, type: 3}
+  rightWhiteCanal: {fileID: 21300000, guid: 57cbf23a4a2718c4f8bcee3615f75fe4, type: 3}
+  leftWhiteDam: {fileID: 21300000, guid: a6a8d11e09c03be42a6d0f459216857d, type: 3}
   flatWhiteDam: {fileID: 21300000, guid: 5a19f2fd7d4dc477b9fb4788af861da2, type: 3}
   rightWhiteDam: {fileID: 21300000, guid: 6f0b703303a084781a55deda34e39d90, type: 3}
 --- !u!1 &3787780581947137281
@@ -127,6 +127,10 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  _hasWater: 0
+  _isCanal: 0
+  _hasDam: 0
+  _visited: 0
   canalSprite: {fileID: 3787780581947137282}
   nodeCollider: {fileID: 3107475268255790443}
   flatCanalWater: {fileID: 21300000, guid: 2d6d2ae55fdbfa4479229fc80bada5ff, type: 3}
@@ -141,6 +145,7 @@ MonoBehaviour:
   leftCanalDamNoWater: {fileID: 21300000, guid: bc2589dbfff8a4477bcff0d542040275,
     type: 3}
   leftNoCanal: {fileID: 21300000, guid: 3aaa01a0ce270a040b3633ba879a8534, type: 3}
+  _prevSprite: {fileID: 0}
   rightCanalWater: {fileID: 21300000, guid: 8950a28ef9daa944198e396f76f9038b, type: 3}
   rightCanalNoWater: {fileID: 21300000, guid: 27725311943af6d4e9ac4bfb2d5945f8, type: 3}
   rightCanalDamWater: {fileID: 21300000, guid: f616859ba06bc40a6a6f4712231d61a2, type: 3}
