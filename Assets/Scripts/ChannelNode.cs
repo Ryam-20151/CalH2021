@@ -16,6 +16,7 @@ public class ChannelNode : MonoBehaviour
     Sprite _prevSprite;
 
     public SpriteRenderer canalSprite;
+    public Collider2D nodeCollider;
 
     public Sprite flatCanalWater;
     public Sprite flatCanalNoWater;
@@ -35,14 +36,6 @@ public class ChannelNode : MonoBehaviour
     public Sprite rightCanalDamNoWater;
     public Sprite rightNoCanal;
 
-
-    public Sprite leftWhiteCanal;
-    public Sprite flatWhiteCanal;
-    public Sprite rightWhiteCanal;
-    public Sprite leftWhiteDam;
-    public Sprite flatWhiteDam;
-    public Sprite rightWhiteDam;
-
     public void configureNode(HexCell[] tiles, int orientation, bool isCanal = false, bool hasWater = false, bool hasDam = false) {
         this._tiles = tiles;
         this._hasWater = hasWater;
@@ -52,6 +45,7 @@ public class ChannelNode : MonoBehaviour
 
         switch (_orientation){
             case -1:
+                nodeCollider.transform.Rotate(0,0,-60f,Space.Self);
                 if (!isCanal) {
                     canalSprite.sprite = leftNoCanal;
                 } else if (isCanal && !hasWater && !hasDam) {
@@ -78,6 +72,7 @@ public class ChannelNode : MonoBehaviour
                 }
                 break;
             case 1:
+                nodeCollider.transform.Rotate(0,0,60f,Space.Self);
                 if (!isCanal) {
                     canalSprite.sprite = rightNoCanal;
                 } else if (isCanal && !hasWater && !hasDam) {
@@ -110,7 +105,8 @@ public class ChannelNode : MonoBehaviour
         return true;
     }
 
-    private bool updateState(){
+    //Update state of node
+    public bool updateState(){
         switch (_state){
             case 0:
                 _state++;
@@ -219,47 +215,6 @@ public class ChannelNode : MonoBehaviour
         }
     }
 
-    void OnMouseEnter(){
-        Debug.Log("MOUSE DETECTED");
-        _prevSprite = canalSprite.sprite;
-        if (_state == 0) {
-            switch (_orientation) {
-                case -1:
-                    canalSprite.sprite = leftWhiteCanal;
-                    break;
-                case 0:
-                    canalSprite.sprite = flatWhiteCanal;
-                    break;
-                case 1:
-                    canalSprite.sprite = rightWhiteCanal;
-                    break;
-            }
-        } else if (_state == 1) {
-            switch (_orientation) {
-                case -1:
-                    canalSprite.sprite = leftWhiteDam;
-                    break;
-                case 0:
-                    canalSprite.sprite = flatWhiteDam;
-                    break;
-                case 1:
-                    canalSprite.sprite = rightWhiteDam;
-                    break;
-            }
-        }
-    }
-
-    void OnMouseExit(){
-        Debug.Log("BYE MOUSE ");
-        canalSprite.sprite = _prevSprite;
-    }
-
-    void OnMouseDown(){
-        if (updateState()){
-            //TODO call updateWater with god node
-        }
-    }
-
     //Returns new value of hasWater
     public bool toggleHasWater(){
         this._hasWater = !this._hasWater;
@@ -279,5 +234,13 @@ public class ChannelNode : MonoBehaviour
 
     public ChannelNode getRef() {
         return this;
+    }
+
+    public int getOrientation(){
+        return _orientation;
+    }
+
+    public int getState(){
+        return _state;
     }
 }
