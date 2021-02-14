@@ -15,14 +15,15 @@ public class HexCell : MonoBehaviour
     public int killedGeese;
     public int spawnedShrek;
 
+    public SpriteRenderer tileRenderer;
     public SpriteRenderer spriteRenderer;
-    public SpriteRenderer gooseRenderer;
     public Sprite grass_sprite;
     public Sprite shrek_sprite;
     public Sprite forest_sprite;
     public Sprite water_sprite;
-    public Sprite goose_sprite;
 
+    public Sprite goose_sprite;
+    public Sprite beaver_sprite;
 
     public GameObject[] nodes = { null, null, null, null, null, null };
 
@@ -31,14 +32,18 @@ public class HexCell : MonoBehaviour
     {
 
         this.killedGeese = 0;
-        gooseRenderer.enabled = false;
+        this.spawnedShrek = 0;
+        spriteRenderer.enabled = false;
+        tileRenderer.enabled = true;
 
     }
 
     public void flood()
     {
         this.isFlooded = true;
-        spriteRenderer.sprite = water_sprite;
+        tileRenderer.sprite = water_sprite;
+        spriteRenderer.enabled = false;
+
         if (this.hasShrek) {
             this.hasShrek = false;
             this.spawnedShrek = 1;
@@ -47,8 +52,7 @@ public class HexCell : MonoBehaviour
         if (this.hasGoose)
         {
             this.killedGeese++;
-            this.hasGoose = false;
-            gooseRenderer.enabled = false;
+            this.hasGoose = false;    
             this.nestingGoose = null;
         }
     }
@@ -58,41 +62,56 @@ public class HexCell : MonoBehaviour
 
         if (this.isPlains)
         {
-            spriteRenderer.sprite = grass_sprite;
+            tileRenderer.sprite = grass_sprite;
         }
         else {
-            spriteRenderer.sprite = forest_sprite;
+            if (this.hasShrek)
+            {
+                tileRenderer.sprite = shrek_sprite;
+            }
+            else
+            {
+                tileRenderer.sprite = forest_sprite;
+            }
         }
         
     }
 
     public void setPlains() {
         this.isPlains = true;
-        spriteRenderer.sprite = grass_sprite;
+        tileRenderer.sprite = grass_sprite;
     }
 
     public void setShrek() {
         this.hasShrek = true;
-        spriteRenderer.sprite = shrek_sprite;
+        tileRenderer.sprite = shrek_sprite;
+
+        spriteRenderer.sprite = beaver_sprite;
+        spriteRenderer.transform.localScale = new Vector3(2.5f,2.5f,1f);
+        spriteRenderer.enabled = true;
     }
 
     public void setGoose() {
         this.hasGoose = true;
         this.nestingGoose = new NestingGoose();
 
-        gooseRenderer.enabled = true;
+        spriteRenderer.sprite = goose_sprite;
+        spriteRenderer.enabled = true;
     }
 
-    public void resolveGoose(int roll)
+    public bool resolveGoose(int roll)
     {
         this.nestingGoose.resolve(roll);
 
         if (this.nestingGoose.spawned) {
             this.hasGoose = false;
-            gooseRenderer.enabled = false;
+            spriteRenderer.enabled = false;
             this.nestingGoose = null;
             Debug.Log("A goose has escaped!");
+            return true;
         }
+
+        return false;
     }
 
     // Update is called once per frame

@@ -10,6 +10,7 @@ public class ManageGame : MonoBehaviour
     public Text displayTurn;
     public Text displayLogs;
     public Text displayScore;
+    public Text displayMessage;
 
     public int turn = 0;
     public int turns = 1;
@@ -42,9 +43,18 @@ public class ManageGame : MonoBehaviour
                     ggrid.spawnGeese();
                 }
 
-                points = ggrid.pollGeeseSpawns();
-            }else{
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex +1);
+                points += ggrid.pollGeeseSpawns();
+                turns += ggrid.pollShreks();
+                
+                displayMessage.text = ggrid.message;
+                ggrid.message = "";
+
+                displayScore.text = "Score: " + points;
+
+            }
+            else
+            {
+                    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex +1);
             }
         }
 

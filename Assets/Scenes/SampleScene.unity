@@ -871,7 +871,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -439, y: 175}
+  m_AnchoredPosition: {x: -364, y: 198}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1233839143
@@ -965,7 +965,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 1
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: -60.37561, w: 0}
+  m_margin: {x: 0, y: 0, z: -27.044434, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -1190,7 +1190,7 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 2
     m_MaxSize: 40
-    m_Alignment: 0
+    m_Alignment: 2
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -1221,7 +1221,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 270.7, y: -145.5}
+  m_AnchoredPosition: {x: 271.5, y: -155.5}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1575751697
@@ -1258,6 +1258,7 @@ MonoBehaviour:
   channelNodePrototype: {fileID: 3787780581947137281, guid: f3df6b761dcaf43ae86a86eb340969c3,
     type: 3}
   k2: 0
+  message: 
 --- !u!4 &1575751699
 Transform:
   m_ObjectHideFlags: 0
@@ -1304,6 +1305,7 @@ MonoBehaviour:
   displayTurn: {fileID: 67119443}
   displayLogs: {fileID: 280479682}
   displayScore: {fileID: 1322388673}
+  displayMessage: {fileID: 1990526033}
   turn: 0
   turns: 1
   points: 0
@@ -1581,7 +1583,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 370, y: -243}
+  m_AnchoredPosition: {x: 391, y: -204}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1990526033
@@ -1610,7 +1612,7 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 1
     m_MaxSize: 40
-    m_Alignment: 0
+    m_Alignment: 2
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0

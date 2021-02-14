@@ -47,16 +47,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isPlains: 0
   isFlooded: 0
-  hasBeaverSpawn: 0
-  nestingGoose: {fileID: 0}
+  hasShrek: 0
+  hasGoose: 0
   adjacentNodes: 0
-  spriteRenderer: {fileID: 8601997287218897719}
-  gooseRenderer: {fileID: 7116075807875278811}
+  killedGeese: 0
+  spawnedShrek: 0
+  tileRenderer: {fileID: 8601997287218897719}
+  spriteRenderer: {fileID: 7116075807875278811}
   grass_sprite: {fileID: 21300000, guid: e8cea150df11d1340be0df3bb2f72102, type: 3}
   shrek_sprite: {fileID: 21300000, guid: 9ddcbdfcd1eed4c4eb137bbe326baba8, type: 3}
   forest_sprite: {fileID: 21300000, guid: 490127f0f8f3eb746b7358a23cddf54f, type: 3}
   water_sprite: {fileID: 21300000, guid: edc40ffd25cb6ea44be91cba5d85fa7f, type: 3}
   goose_sprite: {fileID: 21300000, guid: d3e95ca7b4fdb8f4cab2fd843827cf54, type: 3}
+  beaver_sprite: {fileID: 21300000, guid: 84fa4ce93eed90644bb0efc2a7009dbc, type: 3}
   nodes:
   - {fileID: 0}
   - {fileID: 0}
@@ -75,7 +78,7 @@ GameObject:
   - component: {fileID: 1278694608940405590}
   - component: {fileID: 7116075807875278811}
   m_Layer: 0
-  m_Name: GooseRenderer
+  m_Name: SpriteRenderer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -89,7 +92,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7351591133014389309}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.035, y: 0.112, z: 0}
+  m_LocalPosition: {x: -0.015, y: 0.04, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7039685870451720800}
@@ -156,7 +159,7 @@ GameObject:
   - component: {fileID: 6505929411065921974}
   - component: {fileID: 8601997287218897719}
   m_Layer: 0
-  m_Name: SpriteRenderer
+  m_Name: TileRenderer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
