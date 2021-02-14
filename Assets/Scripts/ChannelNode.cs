@@ -34,12 +34,17 @@ public class ChannelNode : MonoBehaviour
         return true;
     }
 
-    //Recursively iterate through all nodes to update the water
-    // public void updateWater() {
-    //     // if (_hasWater) 
-    //     for (int i = 0; i < 4; i++) {
-    //     }
-    // }
+    // Recursively iterate through all nodes to update the water
+    public void updateWater(ChannelNode curr) {
+        //node has already been looked at
+        if (_hasWater)
+            return; 
+
+        curr._hasWater = true;
+        
+        for (int i = 0; i < 4; i++) {
+        }
+    }
 
     //Returns new value of hasWater
     public bool toggleHasWater(){
