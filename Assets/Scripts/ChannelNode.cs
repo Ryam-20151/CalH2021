@@ -14,7 +14,6 @@ public class ChannelNode : MonoBehaviour
     int _orientation;
     //0 not canal, 1 canal, 2 dam
     int _state = 0;
-    Sprite _prevSprite;
 
     public SpriteRenderer canalSprite;
     public Collider2D nodeCollider;
@@ -31,6 +30,7 @@ public class ChannelNode : MonoBehaviour
     public Sprite leftCanalDamNoWater;
     public Sprite leftNoCanal;
 
+    public Sprite _prevSprite;
     public Sprite rightCanalWater;
     public Sprite rightCanalNoWater;
     public Sprite rightCanalDamWater;
@@ -104,6 +104,17 @@ public class ChannelNode : MonoBehaviour
 
     //Update state of node
     public bool updateState(){
+        bool waterSourceFound = false;
+
+        for (int i = 0; i < 4; i++) {
+            if(_adjacent[i] && _adjacent[i]._hasWater){
+                waterSourceFound = true;
+            }
+        }
+
+        if (!waterSourceFound)
+            return false;
+
         switch (_state){
             case 0:
                 _state++;
@@ -131,13 +142,13 @@ public class ChannelNode : MonoBehaviour
         {
             switch(curr._orientation) {
                 case -1:
-                    curr.canalSprite.sprite = curr.leftCanalWater;
+                    curr.canalSprite.sprite = _prevSprite = curr.leftCanalWater;
                     break;
                 case 0:
-                    curr.canalSprite.sprite = curr.flatCanalWater;
+                    curr.canalSprite.sprite = _prevSprite = curr.flatCanalWater;
                     break;
                 case 1:
-                    curr.canalSprite.sprite = curr.rightCanalWater;
+                    curr.canalSprite.sprite = _prevSprite = curr.rightCanalWater;
                     break;
             }
 
@@ -149,30 +160,32 @@ public class ChannelNode : MonoBehaviour
             //TODO: Update to pick correct orientation of dam w/ water
             switch(curr._orientation) {
                 case -1:
-                    curr.canalSprite.sprite = curr.leftCanalDamWater;
+                    curr.canalSprite.sprite = _prevSprite = curr.leftCanalDamWater;
                     break;
                 case 0:
-                    curr.canalSprite.sprite = curr.flatCanalDamWater;
+                    curr.canalSprite.sprite = _prevSprite = curr.flatCanalDamWater;
                     break;
                 case 1:
-                    curr.canalSprite.sprite = curr.rightCanalDamWater;
+                    curr.canalSprite.sprite = _prevSprite = curr.rightCanalDamWater;
                     break;
             }
 
             curr._hasWater = true;
+            _tiles[i].flood();
+            _tiles[i].flood();
         }
         //Dam before, and this one is a dam
         else if (damIt && curr._hasDam)
         {
             switch(curr._orientation) {
                 case -1:
-                    curr.canalSprite.sprite = curr.leftCanalDamNoWater;
+                    curr.canalSprite.sprite = _prevSprite = curr.leftCanalDamNoWater;
                     break;
                 case 0:
-                    curr.canalSprite.sprite = curr.flatCanalDamNoWater;
+                    curr.canalSprite.sprite = _prevSprite = curr.flatCanalDamNoWater;
                     break;
                 case 1:
-                    curr.canalSprite.sprite = curr.rightCanalDamNoWater;
+                    curr.canalSprite.sprite = _prevSprite = curr.rightCanalDamNoWater;
                     break;
             }
         }
@@ -181,13 +194,13 @@ public class ChannelNode : MonoBehaviour
         {
             switch(curr._orientation) {
                 case -1:
-                    curr.canalSprite.sprite = curr.leftCanalNoWater;
+                    curr.canalSprite.sprite = _prevSprite = curr.leftCanalNoWater;
                     break;
                 case 0:
-                    curr.canalSprite.sprite = curr.flatCanalNoWater;
+                    curr.canalSprite.sprite = _prevSprite = curr.flatCanalNoWater;
                     break;
                 case 1:
-                    curr.canalSprite.sprite = curr.rightCanalNoWater;
+                    curr.canalSprite.sprite = _prevSprite = curr.rightCanalNoWater;
                     break;
             }
         }

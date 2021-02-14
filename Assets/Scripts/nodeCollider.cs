@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class nodeCollider : MonoBehaviour
 {
-    Sprite _prevSprite;
-
     public ChannelNode channelNodeScript;
 
     public Sprite leftWhiteCanal;
@@ -17,7 +15,7 @@ public class nodeCollider : MonoBehaviour
 
     void OnMouseEnter(){
         Debug.Log("MOUSE DETECTED");
-        _prevSprite = channelNodeScript.canalSprite.sprite;
+        channelNodeScript._prevSprite = channelNodeScript.canalSprite.sprite;
         if (channelNodeScript.getState() == 0) {
             switch (channelNodeScript.getOrientation()) {
                 case -1:
@@ -47,7 +45,7 @@ public class nodeCollider : MonoBehaviour
 
     void OnMouseExit(){
         Debug.Log("BYE MOUSE ");
-        channelNodeScript.canalSprite.sprite = _prevSprite;
+        channelNodeScript.canalSprite.sprite = channelNodeScript._prevSprite;
     }
 
     void OnMouseDown(){
