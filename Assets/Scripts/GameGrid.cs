@@ -11,7 +11,7 @@ public class GameGrid : MonoBehaviour
     public GameObject[,] tiles = new GameObject[7,7];
     public float k2;
 
-    public GameObject godNode;
+    public static GameObject godNode;
 
     private System.Random _randomManager;
 
@@ -209,7 +209,7 @@ public class GameGrid : MonoBehaviour
 
                         if (i == 6 && j == 3)
                         {
-                            this.godNode = pos_1_node;
+                            godNode = pos_1_node;
                         }
                     }
                     // Position 2
@@ -315,7 +315,8 @@ public class GameGrid : MonoBehaviour
                         HexCell curr_cell = tiles[i, j].GetComponent<HexCell>();
                         ChannelNode target_node = curr_cell.nodes[pos].GetComponent<ChannelNode>();
 
-                        target_node.addEdge(curr_cell.nodes[(pos + 1) % 6], curr_cell.nodes[(pos - 1) % 6]);
+                        target_node.addEdge(curr_cell.nodes[(pos + 1) % 6].GetComponent<ChannelNode>(),
+                            curr_cell.nodes[(pos - 1) % 6].GetComponent<ChannelNode>());
 
                     }
                 }

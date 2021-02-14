@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class ChannelNode : MonoBehaviour
 {
-    public ChannelNode[] _adjacent = new ChannelNode[4];
-    HexCell[] _tiles = new HexCell[2];
+    public GameObject[] _adjacent = new GameObject[4];
+    GameObject[] _tiles = new GameObject[2];
     bool _hasWater;
-    bool _isCanal;
+    public bool _isCanal;
     bool _hasDam;
     //-1 left, 0 flat, 1 right
     int _orientation;
@@ -36,7 +36,7 @@ public class ChannelNode : MonoBehaviour
     public Sprite rightCanalDamNoWater;
     public Sprite rightNoCanal;
 
-    public void configureNode(HexCell[] tiles, int orientation, bool isCanal = false, bool hasWater = false, bool hasDam = false) {
+    public void configureNode(GameObject[] tiles, int orientation, bool isCanal = false, bool hasWater = false, bool hasDam = false) {
         this._tiles = tiles;
         this._hasWater = hasWater;
         this._isCanal = isCanal;
@@ -89,7 +89,7 @@ public class ChannelNode : MonoBehaviour
     }
 
     //Add edge to node
-    public bool addEdge(ChannelNode first, ChannelNode second){
+    public bool addEdge(GameObject first, GameObject second){
         if (this._adjacent.Length >= 4 || first._adjacent.Length >= 4 || second._adjacent.Length >= 4) {
             return false;
         }
@@ -202,16 +202,16 @@ public class ChannelNode : MonoBehaviour
         }
     }
 
-    public void toggleAllWaterOff(ChannelNode curr, bool isGodNode = true) {
+    public void toggleAllWaterOff(ChannelNode curr) {
         //Don't care about nodes without water
         if (!curr._hasWater)
             return;
 
-        curr._hasWater = isGodNode;
+        curr._hasWater = false;
 
         for (int i = 0; i < 4; i++) {
-            if(curr._adjacent[i] && curr._adjacent[i]._isCanal)
-                toggleAllWaterOff(curr._adjacent[i], isGodNode = false);
+            if(curr._adjacent[i] && curr._adjacent[i].GetComponent<ChannelNode>()._isCanal)
+                toggleAllWaterOff(curr._adjacent[i]);
         }
     }
 

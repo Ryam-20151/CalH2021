@@ -52,7 +52,9 @@ public class nodeCollider : MonoBehaviour
 
     void OnMouseDown(){
         if (channelNodeScript.updateState()){
-            //TODO call updateWater with god node
+            Debug.Log(channelNodeScript.getState() + " and click!");
+            Debug.Log("Adjacent Nodes: " + )
+            channelNodeScript.updateWater(GameGrid.godNode.GetComponent<ChannelNode>());
         }
     }
 }
