@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class ChannelNode : MonoBehaviour
 {
-    public GameObject[] _adjacent = new GameObject[4];
-    GameObject[] _tiles = new GameObject[2];
+    public ChannelNode[] _adjacent = new ChannelNode[4];
+    HexCell[] _tiles = new HexCell[2];
     bool _hasWater;
     public bool _isCanal;
     bool _hasDam;
@@ -36,7 +36,7 @@ public class ChannelNode : MonoBehaviour
     public Sprite rightCanalDamNoWater;
     public Sprite rightNoCanal;
 
-    public void configureNode(GameObject[] tiles, int orientation, bool isCanal = false, bool hasWater = false, bool hasDam = false) {
+    public void configureNode(HexCell[] tiles, int orientation, bool isCanal = false, bool hasWater = false, bool hasDam = false) {
         this._tiles = tiles;
         this._hasWater = hasWater;
         this._isCanal = isCanal;
@@ -89,17 +89,14 @@ public class ChannelNode : MonoBehaviour
     }
 
     //Add edge to node
-    public bool addEdge(GameObject first, GameObject second){
-        if (this._adjacent.Length >= 4 || first._adjacent.Length >= 4 || second._adjacent.Length >= 4) {
-            return false;
-        }
-
+    public bool addEdge(ChannelNode first, ChannelNode second){
+        Debug.Log("ADJACENT, first: " + first + " second: " + second);
         if (this._adjacent[0] == null) {
-            this._adjacent[0] = first.getRef();
-            this._adjacent[1] = second.getRef();
+            this._adjacent[0] = first;
+            this._adjacent[1] = second;
         } else {
-            this._adjacent[2] = first.getRef();
-            this._adjacent[3] = second.getRef();
+            this._adjacent[2] = first;
+            this._adjacent[3] = second;
         }
 
         return true;
@@ -210,7 +207,7 @@ public class ChannelNode : MonoBehaviour
         curr._hasWater = false;
 
         for (int i = 0; i < 4; i++) {
-            if(curr._adjacent[i] && curr._adjacent[i].GetComponent<ChannelNode>()._isCanal)
+            if(curr._adjacent[i] && curr._adjacent[i]._isCanal)
                 toggleAllWaterOff(curr._adjacent[i]);
         }
     }
