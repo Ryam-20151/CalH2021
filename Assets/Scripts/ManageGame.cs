@@ -15,7 +15,7 @@ public class ManageGame : MonoBehaviour
     public int turn = 0;
     public int turns = 1;
     public int points = 0;
-    public int totalTurns = 1;
+    public int totalTurns = 2;
 
     public int logs = 0;
 
@@ -29,22 +29,21 @@ public class ManageGame : MonoBehaviour
                 turns = totalTurns;
                 displayTurn.text = "Turn: " + turn;
 
-                if (turn >= 4 && (turn % 4) == 0)
+                if (turn <= 20 && turn >= 4 && (turn % 4) == 0)
                 {
-                    
-                    
+                    //Spawn geese
+                    ggrid.spawnGeese();
                 }
 
                 if (turn <= 18 && turn >= 4 && (turn % 6) == 0)
                 {
                     //Spawn shreks
                     ggrid.spawnShrek();
-                    //Spawn geese
-                    ggrid.spawnGeese();
+
                 }
 
                 points += ggrid.pollGeeseSpawns();
-                turns += ggrid.pollShreks();
+                totalTurns += ggrid.pollShreks();
                 
                 displayMessage.text = ggrid.message;
                 ggrid.message = "";
