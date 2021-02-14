@@ -21,7 +21,24 @@ public class nodeCollider : MonoBehaviour
     }
 
     void OnMouseEnter(){
+        int waterSourcesFound = 0;
+        int damsFound = 0;
+
+        for (int i = 0; i < 4; i++) {
+            if(channelNodeScript._adjacent[i] && channelNodeScript._adjacent[i]._hasWater){
+                waterSourcesFound++;
+            }
+            if (channelNodeScript._adjacent[i] && channelNodeScript._adjacent[i]._hasDam)
+                damsFound++;
+        }
+
         channelNodeScript._prevSprite = channelNodeScript.canalSprite.sprite;
+        
+        if (manageGameScript.turns == 0 || 
+            (channelNodeScript.getState() == 1 && manageGameScript.logs < 2) ||
+            (waterSourcesFound < 1 || waterSourcesFound <= damsFound))
+            return;
+
         if (channelNodeScript.getState() == 0) {
             switch (channelNodeScript.getOrientation()) {
                 case -1:
