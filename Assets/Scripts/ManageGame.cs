@@ -11,6 +11,8 @@ public class ManageGame : MonoBehaviour
     public int turns = 1;
     public int totalTurns = 1;
 
+    public GameGrid ggrid;
+
     public void endTurn()
         {
 
@@ -18,10 +20,15 @@ public class ManageGame : MonoBehaviour
                 turn++;
                 turns = totalTurns;
                 displayTurn.text = "Turn: "+turn;
-            }
-          
 
-            
+            if (turn >= 8 && (turn % 4) == 0)
+            {
+                //Spawn shreks
+                ggrid.spawnShrek();
+            }
+        }
+
+
         }
 
     public void usebeaver()

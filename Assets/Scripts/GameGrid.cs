@@ -11,6 +11,8 @@ public class GameGrid : MonoBehaviour
     public GameObject[,] tiles = new GameObject[7,7];
     public float k2;
 
+    private System.Random _randomManager;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -45,12 +47,12 @@ public class GameGrid : MonoBehaviour
             }
         }
 
-        System.Random random = new System.Random();
+        this._randomManager = new System.Random();
 
         for (int seeder = 0; seeder < 10; seeder++)
         {
-            int gen_y = random.Next(0, 7);
-            int gen_x = random.Next(0, 7);
+            int gen_y = _randomManager.Next(0, 7);
+            int gen_x = _randomManager.Next(0, 7);
 
             if (tiles[gen_y, gen_x] != null)
             {
@@ -307,6 +309,30 @@ public class GameGrid : MonoBehaviour
 
                     }
                 }
+            }
+        }
+    }
+
+    public void spawnShrek() {
+        for (int seeder = 0; seeder < 1; seeder++)
+        {
+            int gen_y = _randomManager.Next(0, 7);
+            int gen_x = _randomManager.Next(0, 7);
+            bool continue_flag = false;
+
+            if (tiles[gen_y, gen_x] != null) { 
+                if (
+                !(tiles[gen_y, gen_x].GetComponent<HexCell>().isPlains) &&
+                !(tiles[gen_y, gen_x].GetComponent<HexCell>().isFlooded) &&
+                !(tiles[gen_y, gen_x].GetComponent<HexCell>().hasShrek)) 
+                {
+                    tiles[gen_y, gen_x].GetComponent<HexCell>().setShrek();
+                    continue_flag = true;
+                }
+            }
+
+            if (!continue_flag) {
+                seeder--;
             }
         }
     }

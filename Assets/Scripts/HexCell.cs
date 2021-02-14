@@ -7,7 +7,7 @@ public class HexCell : MonoBehaviour
 
     public bool isPlains = false;
     public bool isFlooded = false;
-    public bool hasBeaverSpawn = false;
+    public bool hasShrek = false;
     public NestingGoose nestingGoose = null;
     public bool adjacentNodes = false;
 
@@ -33,6 +33,9 @@ public class HexCell : MonoBehaviour
     public void flood()
     {
         spriteRenderer.sprite = water_sprite;
+        if (this.hasShrek) {
+            this.hasShrek = false;
+        }
     }
 
     public void unflood() {
@@ -49,6 +52,11 @@ public class HexCell : MonoBehaviour
     public void setPlains() {
         this.isPlains = true;
         spriteRenderer.sprite = grass_sprite;
+    }
+
+    public void setShrek() {
+        this.hasShrek = true;
+        spriteRenderer.sprite = shrek_sprite;
     }
 
     // Update is called once per frame

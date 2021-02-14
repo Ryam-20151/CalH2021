@@ -929,6 +929,7 @@ MonoBehaviour:
   turn: 0
   turns: 1
   totalTurns: 3
+  ggrid: {fileID: 1575751698}
 --- !u!4 &1694037531
 Transform:
   m_ObjectHideFlags: 0
@@ -1312,7 +1313,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1982886559
-  m_SortingLayer: 0
+  m_SortingLayer: -1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: d67115925be8f9a42b879c7b42224034, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
