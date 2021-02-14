@@ -352,6 +352,8 @@ public class GameGrid : MonoBehaviour
         for (int i = 0; i < 7; i++)
         {
             tiles[i, 3].GetComponent<HexCell>().nodes[1].GetComponent<ChannelNode>().toggleHasCanal();
+            tiles[i, 3].GetComponent<HexCell>().nodes[1].GetComponent<ChannelNode>().toggleHasWater();
+            tiles[i, 3].GetComponent<HexCell>().nodes[2].GetComponent<ChannelNode>().toggleHasWater();
             tiles[i, 3].GetComponent<HexCell>().nodes[2].GetComponent<ChannelNode>().toggleHasCanal();
         }
     }
