@@ -13,6 +13,7 @@ public class ChannelNode : MonoBehaviour
     int _orientation;
     //0 not canal, 1 canal, 2 dam
     int _state = 0;
+    Sprite _prevSprite;
 
     public SpriteRenderer canalSprite;
 
@@ -34,7 +35,14 @@ public class ChannelNode : MonoBehaviour
     public Sprite rightCanalDamNoWater;
     public Sprite rightNoCanal;
 
-    public configureNode(HexCell[] tiles, int orientation, bool isCanal = false, bool hasWater = false, bool hasDam = false) {
+    public Sprite leftWhiteCanal;
+    public Sprite flatWhiteCanal;
+    public Sprite rightWhiteCanal;
+    public Sprite leftWhiteDam;
+    public Sprite flatWhiteDam;
+    public Sprite rightWhiteDam;
+
+    public void configureNode(HexCell[] tiles, int orientation, bool isCanal = false, bool hasWater = false, bool hasDam = false) {
         this._tiles = tiles;
         this._hasWater = hasWater;
         this._isCanal = isCanal;
@@ -210,15 +218,42 @@ public class ChannelNode : MonoBehaviour
         }
     }
 
-    void onMouseEnter(){
-
+    void OnMouseEnter(){
+        Debug.Log("MOUSE DETECTED");
+        _prevSprite = canalSprite.sprite;
+        if (_state == 0) {
+            switch (_orientation) {
+                case -1:
+                    canalSprite.sprite = leftWhiteCanal;
+                    break;
+                case 0:
+                    canalSprite.sprite = flatWhiteCanal;
+                    break;
+                case 1:
+                    canalSprite.sprite = rightWhiteCanal;
+                    break;
+            }
+        } else if (_state == 1) {
+            switch (_orientation) {
+                case -1:
+                    canalSprite.sprite = leftWhiteDam;
+                    break;
+                case 0:
+                    canalSprite.sprite = flatWhiteDam;
+                    break;
+                case 1:
+                    canalSprite.sprite = rightWhiteDam;
+                    break;
+            }
+        }
     }
 
-    void onMouseLeave(){
-
+    void OnMouseExit(){
+        Debug.Log("BYE MOUSE ");
+        canalSprite.sprite = _prevSprite;
     }
 
-    void onMouseDown(){
+    void OnMouseDown(){
         if (updateState()){
             //TODO call updateWater with god node
         }
