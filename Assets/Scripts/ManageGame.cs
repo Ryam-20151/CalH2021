@@ -43,13 +43,18 @@ public class ManageGame : MonoBehaviour
                     ggrid.spawnGeese();
                 }
 
-                points = ggrid.pollGeeseSpawns();
+                points += ggrid.pollGeeseSpawns();
+                turns += ggrid.pollShreks();
+                
                 displayMessage.text = ggrid.message;
                 ggrid.message = "";
 
+                displayScore.text = "Score: " + points;
+
             }
-        else{
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex +1);
+            else
+            {
+                    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex +1);
             }
         }
 
