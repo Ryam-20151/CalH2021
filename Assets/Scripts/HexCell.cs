@@ -11,7 +11,9 @@ public class HexCell : MonoBehaviour
     public bool hasGoose = false;
     public NestingGoose nestingGoose = null;
     public bool adjacentNodes = false;
+
     public int killedGeese;
+    public int spawnedShrek;
 
     public SpriteRenderer spriteRenderer;
     public SpriteRenderer gooseRenderer;
@@ -38,6 +40,7 @@ public class HexCell : MonoBehaviour
         spriteRenderer.sprite = water_sprite;
         if (this.hasShrek) {
             this.hasShrek = false;
+            this.spawnedShrek = 1;
         }
 
         if (this.hasGoose)
@@ -80,6 +83,13 @@ public class HexCell : MonoBehaviour
     public void resolveGoose(int roll)
     {
         this.nestingGoose.resolve(roll);
+
+        if (this.nestingGoose.spawned) {
+            this.hasGoose = false;
+            gooseRenderer.enabled = false;
+            this.nestingGoose = null;
+            Debug.Log('A goose has escaped!');
+        }
     }
 
     // Update is called once per frame

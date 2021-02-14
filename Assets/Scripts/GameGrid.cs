@@ -440,6 +440,27 @@ public class GameGrid : MonoBehaviour
         return points;
     }
 
+    public int pollShreks() {
+        int shreks = 0;
+
+        for (int i = 0; i < 7; i++)
+        {
+            for (int j = 0; j < 7; j++)
+            {
+                if (tiles[j, i] != null)
+                {
+
+                    if (tiles[j, i].GetComponent<HexCell>().spawnedShrek != 0)
+                    {
+                        points += tiles[j, i].GetComponent<HexCell>().spawnedShrek;
+                        tiles[j, i].GetComponent<HexCell>().spawnedShrek = 0;
+                    }
+                }
+            }
+        }
+
+        return shreks;
+    }
 
     // Update is called once per frame
     void Update()

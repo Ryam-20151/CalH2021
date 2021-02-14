@@ -30,7 +30,8 @@ public class ManageGame : MonoBehaviour
                     ggrid.spawnGeese();
                 }
 
-                points = ggrid.pollGeeseSpawns();
+                points += ggrid.pollGeeseSpawns();
+                turns += ggrid.pollShreks();
             }
         }
 
