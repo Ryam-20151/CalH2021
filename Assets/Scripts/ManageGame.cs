@@ -6,11 +6,14 @@ using UnityEngine.UI;
 public class ManageGame : MonoBehaviour
 {
     public Text displayTurn;
+    public Text displayLogs;
 
     public int turn = 0;
     public int turns = 1;
     public int points = 0;
     public int totalTurns = 1;
+
+    public int logs = 0;
 
     public GameGrid ggrid;
 
@@ -39,6 +42,13 @@ public class ManageGame : MonoBehaviour
     {
         turns--;
     }
+
+    public void getLogs()
+    {
+        turns--;
+        logs++;
+        displayLogs.text = ""+logs;
+    }
     
    
     void Start()
@@ -46,6 +56,7 @@ public class ManageGame : MonoBehaviour
             turn++;
             turns = totalTurns;
             displayTurn.text = "Turn: "+turn;
+            displayLogs.text = ""+logs;
     }
 
 }
