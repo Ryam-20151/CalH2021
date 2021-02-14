@@ -315,7 +315,8 @@ public class GameGrid : MonoBehaviour
                         HexCell curr_cell = tiles[i, j].GetComponent<HexCell>();
                         ChannelNode target_node = curr_cell.nodes[pos].GetComponent<ChannelNode>();
 
-                        target_node.addEdge(curr_cell.nodes[(pos + 1) % 6], curr_cell.nodes[(pos - 1) % 6]);
+                        Debug.Log(curr_cell.nodes.Length);
+                        target_node.addEdge(curr_cell.nodes[(pos + 1) % 6].GetComponent<ChannelNode>(), curr_cell.nodes[(pos - 1) % 6].GetComponent<ChannelNode>());
 
                     }
                 }
@@ -357,14 +358,53 @@ public class GameGrid : MonoBehaviour
 
     public void spawnGeese()
     {
+
+        for (int seeder = 0; seeder < 1; seeder++)
+        {
+            int gen_y = _randomManager.Next(0, 7);
+            int gen_x = _randomManager.Next(0, 7);
+            bool continue_flag = false;
+
+            if (tiles[gen_y, gen_x] != null)
+            {
+                if (
+                !(tiles[gen_y, gen_x].GetComponent<HexCell>().isPlains) &&
+                !(tiles[gen_y, gen_x].GetComponent<HexCell>().isFlooded) &&
+                !(tiles[gen_y, gen_x].GetComponent<HexCell>().hasShrek))
+                {
+                    tiles[gen_y, gen_x].GetComponent<HexCell>().setShrek();
+                    continue_flag = true;
+                }
+            }
+
+            if (!continue_flag)
+            {
+                seeder--;
+            }
+        }
+
+        
+    }
+
+    public void pollGeeseSpawns() {
         for (int i = 0; i < 7; i++)
         {
             for (int j = 0; j < 7; j++)
             {
+                if (tiles[j, i] != null)
+                {
+                    if (
+                    !(tiles[j, i].GetComponent<HexCell>().isPlains) &&
+                    !(tiles[j, i].GetComponent<HexCell>().isFlooded) &&
+                    !(tiles[j, i].GetComponent<HexCell>().hasShrek))
+                    {
+                        tiles[j, i].GetComponent<HexCell>().setShrek();
+                        
+                    }
+                }
             }
         }
     }
-
 
 
     // Update is called once per frame
