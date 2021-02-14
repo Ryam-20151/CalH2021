@@ -11,6 +11,7 @@ public class HexCell : MonoBehaviour
     public bool hasGoose = false;
     public NestingGoose nestingGoose = null;
     public bool adjacentNodes = false;
+    public int killedGeese;
 
     public SpriteRenderer spriteRenderer;
     public SpriteRenderer gooseRenderer;
@@ -27,6 +28,7 @@ public class HexCell : MonoBehaviour
     void Start()
     {
 
+        this.killedGeese = 0;
         gooseRenderer.enabled = false;
 
     }
@@ -40,6 +42,7 @@ public class HexCell : MonoBehaviour
 
         if (this.hasGoose)
         {
+            this.killedGeese++;
             this.hasGoose = false;
             gooseRenderer.enabled = false;
             this.nestingGoose = null;
@@ -72,6 +75,11 @@ public class HexCell : MonoBehaviour
         this.nestingGoose = null;
 
         gooseRenderer.enabled = true;
+    }
+
+    public void resolveGoose(int roll)
+    {
+        this.nestingGoose.resolve(roll);
     }
 
     // Update is called once per frame

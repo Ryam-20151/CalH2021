@@ -10,6 +10,10 @@ public class NestingGoose : MonoBehaviour
             
     }
 
+    public void resolve(int roll) {
+
+    }
+
     // Update is called once per frame
     void Update()
     {

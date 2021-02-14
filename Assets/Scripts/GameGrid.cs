@@ -344,7 +344,17 @@ public class GameGrid : MonoBehaviour
 
             }
         }
-            }
+
+        this.makeRiver();
+    }
+
+    private void makeRiver() {
+        for (int i = 0; i < 7; i++)
+        {
+            tiles[i, 3].GetComponent<HexCell>().nodes[1].GetComponent<ChannelNode>().toggleHasCanal();
+            tiles[i, 3].GetComponent<HexCell>().nodes[2].GetComponent<ChannelNode>().toggleHasCanal();
+        }
+    }
 
     public void spawnShrek() {
         for (int seeder = 0; seeder < 1; seeder++)
@@ -400,24 +410,34 @@ public class GameGrid : MonoBehaviour
         
     }
 
-    public void pollGeeseSpawns() {
+    public int pollGeeseSpawns() {
+        int points = 0;
+
+        int roll = this._randomManager.Next(0, 100);
+
         for (int i = 0; i < 7; i++)
         {
             for (int j = 0; j < 7; j++)
             {
                 if (tiles[j, i] != null)
                 {
-                    if (
-                    !(tiles[j, i].GetComponent<HexCell>().isPlains) &&
-                    !(tiles[j, i].GetComponent<HexCell>().isFlooded) &&
-                    !(tiles[j, i].GetComponent<HexCell>().hasShrek))
+                    if (tiles[j, i].GetComponent<HexCell>().hasGoose)
                     {
-                        tiles[j, i].GetComponent<HexCell>().setShrek();
-                        
+                        tiles[j, i].GetComponent<HexCell>().resolveGoose(roll);
                     }
+
+                    if (tiles[j, i].GetComponent<HexCell>().killedGeese != 0)
+                    {
+                        points += tiles[j, i].GetComponent<HexCell>().killedGeese;
+                        tiles[j, i].GetComponent<HexCell>().killedGeese = 0;
+                    }
+
+
                 }
             }
         }
+
+        return points;
     }
 
 
