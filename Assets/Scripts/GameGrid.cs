@@ -358,6 +358,17 @@ public class GameGrid : MonoBehaviour
         }
     }
 
+    public void defloodAll() {
+        for (int i = 0; i < 7; i++)
+        {
+            for (int j = 0; j < 7; j++)
+            {
+                tiles[j, i].GetComponent<HexCell>().unflood();
+            }
+        }
+    }
+
+
     public void spawnShrek() {
         for (int seeder = 0; seeder < 1; seeder++)
         {
@@ -416,6 +427,8 @@ public class GameGrid : MonoBehaviour
         int points = 0;
 
         int roll = this._randomManager.Next(0, 100);
+        Debug.Log("Roll:");
+        Debug.Log(roll);
 
         for (int i = 0; i < 7; i++)
         {
@@ -442,6 +455,27 @@ public class GameGrid : MonoBehaviour
         return points;
     }
 
+    public int pollShreks() {
+        int shreks = 0;
+
+        for (int i = 0; i < 7; i++)
+        {
+            for (int j = 0; j < 7; j++)
+            {
+                if (tiles[j, i] != null)
+                {
+
+                    if (tiles[j, i].GetComponent<HexCell>().spawnedShrek != 0)
+                    {
+                        shreks += tiles[j, i].GetComponent<HexCell>().spawnedShrek;
+                        tiles[j, i].GetComponent<HexCell>().spawnedShrek = 0;
+                    }
+                }
+            }
+        }
+
+        return shreks;
+    }
 
     // Update is called once per frame
     void Update()
