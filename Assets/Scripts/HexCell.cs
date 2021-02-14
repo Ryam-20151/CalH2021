@@ -37,6 +37,7 @@ public class HexCell : MonoBehaviour
 
     public void flood()
     {
+        this.isFlooded = true;
         spriteRenderer.sprite = water_sprite;
         if (this.hasShrek) {
             this.hasShrek = false;
@@ -53,6 +54,8 @@ public class HexCell : MonoBehaviour
     }
 
     public void unflood() {
+        this.isFlooded = false;
+
         if (this.isPlains)
         {
             spriteRenderer.sprite = grass_sprite;
@@ -75,7 +78,7 @@ public class HexCell : MonoBehaviour
 
     public void setGoose() {
         this.hasGoose = true;
-        this.nestingGoose = null;
+        this.nestingGoose = new NestingGoose();
 
         gooseRenderer.enabled = true;
     }
@@ -88,7 +91,7 @@ public class HexCell : MonoBehaviour
             this.hasGoose = false;
             gooseRenderer.enabled = false;
             this.nestingGoose = null;
-            Debug.Log('A goose has escaped!');
+            Debug.Log("A goose has escaped!");
         }
     }
 

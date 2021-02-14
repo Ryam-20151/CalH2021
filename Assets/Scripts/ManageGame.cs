@@ -25,12 +25,17 @@ public class ManageGame : MonoBehaviour
                 turns = totalTurns;
                 displayTurn.text = "Turn: " + turn;
 
-                if (turn >= 8 && (turn % 4) == 0)
+                if (turn >= 4 && (turn % 4) == 0)
                 {
                     //Spawn shreks
                     ggrid.spawnShrek();
                     //Spawn geese
                     ggrid.spawnGeese();
+                }
+
+                if (turn <= 16 && turn >= 4 && (turn % 4) == 0)
+                {
+
                 }
 
                 points += ggrid.pollGeeseSpawns();

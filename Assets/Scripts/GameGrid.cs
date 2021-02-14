@@ -414,6 +414,8 @@ public class GameGrid : MonoBehaviour
         int points = 0;
 
         int roll = this._randomManager.Next(0, 100);
+        Debug.Log("Roll:");
+        Debug.Log(roll);
 
         for (int i = 0; i < 7; i++)
         {
@@ -452,7 +454,7 @@ public class GameGrid : MonoBehaviour
 
                     if (tiles[j, i].GetComponent<HexCell>().spawnedShrek != 0)
                     {
-                        points += tiles[j, i].GetComponent<HexCell>().spawnedShrek;
+                        shreks += tiles[j, i].GetComponent<HexCell>().spawnedShrek;
                         tiles[j, i].GetComponent<HexCell>().spawnedShrek = 0;
                     }
                 }
