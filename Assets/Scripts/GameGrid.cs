@@ -315,8 +315,22 @@ public class GameGrid : MonoBehaviour
                         HexCell curr_cell = tiles[i, j].GetComponent<HexCell>();
                         ChannelNode target_node = curr_cell.nodes[pos].GetComponent<ChannelNode>();
 
-                        target_node.addEdge(curr_cell.nodes[(pos + 1) % 6].GetComponent<ChannelNode>(),
-                            curr_cell.nodes[(pos - 1) % 6].GetComponent<ChannelNode>());
+                        int mod1 = (pos + 1);
+                        int mod2 = (pos - 1);
+
+                        if (mod1 == 6) {
+                            mod1 = 0;
+                        }
+
+                        if (mod2 == -1) {
+                            mod2 = 5;
+                        }
+
+                        Debug.Log(mod1);
+                        Debug.Log(mod2);
+
+                        target_node.addEdge(curr_cell.nodes[mod1].GetComponent<ChannelNode>(),
+                            curr_cell.nodes[mod2].GetComponent<ChannelNode>());
 
                     }
                 }
