@@ -315,14 +315,21 @@ public class GameGrid : MonoBehaviour
                         HexCell curr_cell = tiles[i, j].GetComponent<HexCell>();
                         ChannelNode target_node = curr_cell.nodes[pos].GetComponent<ChannelNode>();
 
-                        target_node.addEdge(curr_cell.nodes[(pos + 1) % 6].GetComponent<ChannelNode>(),
-                            curr_cell.nodes[(pos + 1) % 6].GetComponent<ChannelNode>());
+                        target_node.addEdge(curr_cell.nodes[(pos + 1) % 6], curr_cell.nodes[(pos - 1) % 6]);
 
                     }
                 }
             }
         }
-    }
+
+        for (int i = 0; i < 7; i++)
+        {
+            for (int j = 0; j < 7; j++)
+            {
+
+            }
+        }
+            }
 
     public void spawnShrek() {
         for (int seeder = 0; seeder < 1; seeder++)
@@ -344,6 +351,16 @@ public class GameGrid : MonoBehaviour
 
             if (!continue_flag) {
                 seeder--;
+            }
+        }
+    }
+
+    public void spawnGeese()
+    {
+        for (int i = 0; i < 7; i++)
+        {
+            for (int j = 0; j < 7; j++)
+            {
             }
         }
     }
