@@ -356,6 +356,17 @@ public class GameGrid : MonoBehaviour
         }
     }
 
+    public void defloodAll() {
+        for (int i = 0; i < 7; i++)
+        {
+            for (int j = 0; j < 7; j++)
+            {
+                tiles[j, i].GetComponent<HexCell>().unflood();
+            }
+        }
+    }
+
+
     public void spawnShrek() {
         for (int seeder = 0; seeder < 1; seeder++)
         {

@@ -35,7 +35,7 @@ public class ManageGame : MonoBehaviour
 
                 if (turn <= 16 && turn >= 4 && (turn % 4) == 0)
                 {
-
+                    
                 }
 
                 points += ggrid.pollGeeseSpawns();
