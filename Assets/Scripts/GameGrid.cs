@@ -357,6 +357,9 @@ public class GameGrid : MonoBehaviour
             tiles[i, 3].GetComponent<HexCell>().nodes[1].GetComponent<ChannelNode>().updateState();
             tiles[i, 3].GetComponent<HexCell>().nodes[2].GetComponent<ChannelNode>().updateState();
         }
+
+        tiles[0, 3].GetComponent<HexCell>().nodes[1].GetComponent<ChannelNode>().toggleAllWaterOff(godNode.GetComponent<ChannelNode>());
+        tiles[0, 3].GetComponent<HexCell>().nodes[1].GetComponent<ChannelNode>().updateWater(godNode.GetComponent<ChannelNode>());
     }
 
     public void defloodAll() {
