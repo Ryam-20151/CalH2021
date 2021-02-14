@@ -2,11 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
 
 public class ManageGame : MonoBehaviour
 {
     public Text displayTurn;
     public Text displayLogs;
+    public Text displayScore;
 
     public int turn = 0;
     public int turns = 1;
@@ -34,6 +37,8 @@ public class ManageGame : MonoBehaviour
                 }
 
                 points = ggrid.pollGeeseSpawns();
+            }else{
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex +1);
             }
         }
 
@@ -44,9 +49,13 @@ public class ManageGame : MonoBehaviour
 
     public void getLogs()
     {
-        turns--;
-        logs++;
-        displayLogs.text = ""+logs;
+        if(turns>0)
+        {
+          turns--;
+          logs++;
+          displayLogs.text = ""+logs;
+        }
+       
     }
     
    
@@ -56,6 +65,7 @@ public class ManageGame : MonoBehaviour
             turns = totalTurns;
             displayTurn.text = "Turn: "+turn;
             displayLogs.text = ""+logs;
+            displayScore.text = "Score: "+points;
     }
 
 }
