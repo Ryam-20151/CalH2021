@@ -37,12 +37,22 @@ public class ChannelNode : MonoBehaviour
     public Sprite rightCanalDamNoWater;
     public Sprite rightNoCanal;
 
+    private ManageGame gameManagerScript;
+
+    void Start() {
+        Debug.Log("manager Aquired!");
+        gameManagerScript = GameObject.Find("ManageGame").GetComponent<ManageGame>();
+    }
+
     public void configureNode(HexCell[] tiles, int orientation, bool isCanal = false, bool hasWater = false, bool hasDam = false) {
         this._tiles = tiles;
         this._hasWater = hasWater;
         this._isCanal = isCanal;
         this._hasWater = hasWater;
         this._orientation = orientation;
+
+        Debug.Log("manager Aquired in configure!");
+        gameManagerScript = GameObject.Find("ManageGame").GetComponent<ManageGame>();
 
         switch (_orientation){
             case -1:
@@ -117,12 +127,29 @@ public class ChannelNode : MonoBehaviour
 
         switch (_state){
             case 0:
-                _state++;
-                _isCanal = true;
+                if (gameManagerScript.turns > 0)
+                {
+                    _state++;
+                    _isCanal = true;
+                    gameManagerScript.turns--;
+
+                } else {
+                    Debug.Log("Cannot dig ditch with no actions remaining!");
+                }
+
                 break;
             case 1:
-                _state++;
-                _hasDam = true;
+                if (gameManagerScript.logs > 2 && gameManagerScript.turns > 0)
+                {
+                    _state++;
+                    _hasDam = true;
+                    gameManagerScript.turns--;
+                    gameManagerScript.logs -= 2;
+                }
+                else
+                {
+                    Debug.Log("Cannot build dam with no actions or less than 2 wood!");
+                }
                 break;
             default:
                 return false;
