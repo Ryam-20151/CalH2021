@@ -11,6 +11,8 @@ public class GameGrid : MonoBehaviour
     public GameObject[,] tiles = new GameObject[7,7];
     public float k2;
 
+    public GameObject godNode;
+
     private System.Random _randomManager;
 
     // Start is called before the first frame update
@@ -204,6 +206,11 @@ public class GameGrid : MonoBehaviour
                         {
                             pos_1_cell.GetComponent<HexCell>().nodes[4] = pos_1_node;
                         }
+
+                        if (i == 6 && j == 3)
+                        {
+                            this.godNode = pos_1_node;
+                        }
                     }
                     // Position 2
                     if (curr_cell.nodes[2] == null)
@@ -288,7 +295,11 @@ public class GameGrid : MonoBehaviour
                         {
                             pos_5_cell.GetComponent<HexCell>().nodes[2] = pos_5_node;
                         }
+
+
                     }
+
+                    
                 }
             }
         }
