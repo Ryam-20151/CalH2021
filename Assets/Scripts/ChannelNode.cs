@@ -171,8 +171,9 @@ public class ChannelNode : MonoBehaviour
             }
 
             curr._hasWater = true;
-            _tiles[i].flood();
-            _tiles[i].flood();
+            Debug.Log("Dam spotted!");
+            _tiles[0].flood();
+            _tiles[1].flood();
         }
         //Dam before, and this one is a dam
         else if (damIt && curr._hasDam)

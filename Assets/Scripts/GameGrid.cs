@@ -363,7 +363,7 @@ public class GameGrid : MonoBehaviour
         {
             for (int j = 0; j < 7; j++)
             {
-                if (tiles[gen_y, gen_x] != null)
+                if (tiles[j, i] != null)
                 {
                     tiles[j, i].GetComponent<HexCell>().unflood();
                 }
