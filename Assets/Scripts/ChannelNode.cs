@@ -6,9 +6,10 @@ public class ChannelNode : MonoBehaviour
 {
     public ChannelNode[] _adjacent = new ChannelNode[4];
     HexCell[] _tiles = new HexCell[2];
-    bool _hasWater;
+    public bool _hasWater;
     public bool _isCanal;
-    bool _hasDam;
+    public bool _hasDam;
+    public bool _visited = false;
     //-1 left, 0 flat, 1 right
     int _orientation;
     //0 not canal, 1 canal, 2 dam
@@ -121,9 +122,10 @@ public class ChannelNode : MonoBehaviour
     // Recursively iterate through all nodes to update the water
     public void updateWater(ChannelNode curr, bool damIt = false) {
         //node has already been looked at
-        if (curr._hasWater)
+        if (curr._hasWater || (curr._visited && damIt))
             return; 
 
+        curr._visited = true;
         //regular canal, no dam
         if (!damIt)
         {
@@ -204,6 +206,7 @@ public class ChannelNode : MonoBehaviour
             return;
 
         curr._hasWater = false;
+        curr._visited = false;
 
         for (int i = 0; i < 4; i++) {
             if(curr._adjacent[i] && curr._adjacent[i]._isCanal)
