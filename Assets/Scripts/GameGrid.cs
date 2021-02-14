@@ -10,6 +10,7 @@ public class GameGrid : MonoBehaviour
     public GameObject channelNodePrototype;
     public GameObject[,] tiles = new GameObject[7,7];
     public float k2;
+    public string message = "";
 
     public static GameObject godNode;
 
@@ -441,7 +442,9 @@ public class GameGrid : MonoBehaviour
                 {
                     if (tiles[j, i].GetComponent<HexCell>().hasGoose)
                     {
-                        tiles[j, i].GetComponent<HexCell>().resolveGoose(roll);
+                        if (tiles[j, i].GetComponent<HexCell>().resolveGoose(roll)) {
+                            message = "A goose has escaped!";
+                        }
                     }
 
                     if (tiles[j, i].GetComponent<HexCell>().killedGeese != 0)
